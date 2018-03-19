@@ -1,0 +1,49 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usetikzlibrary{calc}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\DeclareMathOperator{\Corr}{Corr}
+
+\begin{document}
+\begin{tikzpicture}
+
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(4,0){X}
+\tkzDefPoint(2,3){Y}
+
+\draw[->] (O) -- (X) node[anchor=north east]{$x$};
+\draw[->, blue] (O) -- (Y) node[anchor=east, color=black]{$y$};
+
+\tkzMarkAngle[size=0.4](X,O,Y)
+\tkzLabelAngle[pos=0.6](X,O,Y){$\varphi$}
+
+\begin{pgfinterruptboundingbox} % remove blank space
+\tkzDefLine[perpendicular=through Y](O,X);
+\tkzGetPoint{hY}
+\tkzDefPointBy[projection=onto X--O](hY);
+\tkzGetPoint{yy}
+\draw[dashed] (Y) --(yy);
+\tkzMarkRightAngle(Y,yy,X);
+\end{pgfinterruptboundingbox} % remove blank space
+
+\draw[->, dashed, blue] (O) -- (yy) node[anchor=north, color=black]{$\hat y$};
+
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,63 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usetikzlibrary{calc}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\begin{tikzpicture}
+
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(-2,-3){x}
+\tkzDefPoint(3,-4){y}
+
+\draw[->] (O) -- (x) node[anchor=north east]{$\widetilde X$};
+\draw[->] (O) -- (y) node[anchor=north west]{$\widetilde Y$};
+\tkzMarkAngle[size=0.4](x,O,y)
+\tkzLabelAngle[pos=0.6](x,O,y){$\varphi$}
+
+\begin{pgfinterruptboundingbox}
+\tkzDefLine[perpendicular=through y, K=-.3](x,O);
+\tkzGetPoint{hy}
+\tkzDefPointBy[projection=onto x--O](hy)
+\tkzGetPoint{h}
+\tkzMarkRightAngle[size=0.15](x,h,y)
+\draw[dashed,->,red] (h) -- (y) node[midway,below]{\small$\widetilde v$};
+
+\tkzDefLine[perpendicular= through x, K=-.9](y,O);
+\tkzGetPoint{hx}
+\tkzDefPointBy[projection=onto y--O](hx)
+\tkzGetPoint{p}
+\tkzMarkRightAngle[size=0.15](O,p,x)
+\draw[dashed,->,blue] (p) -- (x) node[midway,near start,above]{\small$\widetilde u$};
+
+\tkzDefLine[parallel=through y](p,x);
+\tkzGetPoint{pu}
+
+\tkzDefLine[parallel=through p](h,y);
+\tkzGetPoint{pv}
+
+\tkzInterLL(y,h)(p,x);
+\tkzGetPoint{C}
+\end{pgfinterruptboundingbox}
+
+\tkzInterLL(p,pv)(y,pu);
+\tkzGetPoint{pint};
+\draw[dashed,red] (p) -- (pint);
+
+\tkzMarkRightAngle[size=0.15](O,y,pint);
+\tkzMarkAngle[size=0.3,thick](x,p,pint);
+\tkzMarkAngle[size=0.3,thick](x,C,y);
+\tkzLabelAngle[pos=0.5](x,C,y){\footnotesize\textbf{$180^\circ - \varphi$}}
+
+\end{tikzpicture}
+\end{document}

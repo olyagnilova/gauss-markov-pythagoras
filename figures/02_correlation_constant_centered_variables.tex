@@ -1,0 +1,51 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+
+%Angle Definitions
+%-----------------
+
+%start tikz picture, and use the tdplot_main_coords style to implement the display
+%coordinate transformation provided by 3dplot
+\tdplotsetmaincoords{40}{120}
+
+\begin{tikzpicture}[tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\coordinate (xc) at (2.1,-2.1);
+\coordinate (xcp) at (-1.6,1.6);
+\coordinate (yc) at (-0.9,3);
+\coordinate (un) at (0,0,6);
+
+\tdplotsetcoord{S}{10}{35}{0}  % икс
+\tdplotsetcoord{P}{7}{30}{90} % игрек
+
+\draw[->] (O) -- (un) node[anchor=east]{$\mathbf{1}$};
+\draw[->] (O) -- (S) node[anchor=south east]{$x$};
+\draw[->] (O) -- (P) node[anchor=north west]{$y$};
+
+\draw (0,0.5) ellipse (4cm and 1cm) node[anchor=west, right=2.7cm]{\tiny$Lin^{\perp}(\mathbf{1})$};
+
+\draw[->] (O) -- (yc) node[anchor=north east]{\small $y^c$};
+\draw[->] (O) -- (xc) node[anchor=north east]{\small $x^c$};
+\draw[dashed] (P) -- (yc);
+\draw[dashed] (S) -- (xc);
+
+\tkzMarkRightAngle[size=0.15](P,yc,O);
+\tkzMarkRightAngle[size=0.15](S,xc,O);
+\tdplotdrawarc{(O)}{0.15}{-45}{110}{anchor=north}{\tiny$\varphi$}
+
+\end{tikzpicture}
+\end{document}

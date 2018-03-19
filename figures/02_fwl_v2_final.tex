@@ -1,0 +1,62 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+
+%Angle Definitions
+%-----------------
+
+%start tikz picture, and use the tdplot_main_coords style to implement the display
+%coordinate transformation provided by 3dplot
+\tdplotsetmaincoords{40}{120}
+
+\begin{tikzpicture}[tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\coordinate (xc) at (2.3,-2.3);
+\coordinate (xcp) at (0.9,-0.9);
+\coordinate (yc) at (0.5,3);
+\coordinate (z) at (0,0,6);
+
+\tdplotsetcoord{S}{11}{35}{0}  % икс
+\tdplotsetcoord{R}{4.37}{35}{0} % разложение
+\tdplotsetcoord{P}{5.5}{30}{90} % игрек
+\tdplotsetcoord{T}{8.2}{20}{0} % игрек с крышкой
+
+\draw[->] (O) -- (z) node[anchor=east]{$z$};
+\draw[->] (O) -- (S) node[anchor=south east]{$x$};
+\draw[->] (O) -- (P) node[anchor=south west]{$y$};
+
+\draw (0.5,0) ellipse (5cm and 2cm) node[anchor=west,right=3.3cm]{\footnotesize$Lin^{\perp}(z)$};
+
+\draw[->] (O) -- (yc) node[anchor=north east]{$\tilde y$};
+\draw[->] (O) -- (xc) node[anchor=north west]{$\tilde x$};
+
+\draw[dashed] (P) -- (yc);
+\draw[dashed] (S) -- (xc);
+
+\draw[dashed] (yc) -- (xcp);
+\draw[->] (O) -- (xcp) node[anchor=north]{\small $\hat \beta_1 \tilde x$};
+
+\draw[->] (O) -- (T) node[anchor=south]{$\hat y$};
+\draw[dashed] (T) -- (xcp);
+\draw[dashed] (P) -- (T);
+\draw[->] (O) -- (R) node[anchor=south]{$\hat \beta_1 x$};
+
+\tkzMarkRightAngle[size=0.15](P,yc,O);
+\tkzMarkRightAngle[size=0.15](S,xc,O);
+\tkzMarkRightAngle[size=0.15](yc,xcp,O);
+
+\end{tikzpicture}
+\end{document}

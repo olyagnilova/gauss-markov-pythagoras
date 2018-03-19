@@ -1,0 +1,90 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\usepackage{amsmath}
+\DeclareMathOperator{\E}{E}
+
+\begin{document}
+
+%Angle Definitions
+%-----------------
+
+%start tikz picture, and use the tdplot_main_coords style to implement the display
+%coordinate transformation provided by 3dplot
+\tdplotsetmaincoords{40}{120}
+
+\begin{tikzpicture}[tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\coordinate (xc) at (2.6,-1.7);
+\coordinate (xcp) at (1.56,-1.02);
+\coordinate (yc) at (-0.9,3.2);
+\coordinate (ycp) at (-0.252,0.896);
+\coordinate (z) at (0,0,8);
+\coordinate (pzx) at (0,0,3.7);
+\coordinate (pzy) at (0,0,6.5);
+
+\tdplotsetcoord{S}{10}{35}{0}  % икс
+\tdplotsetcoord{P}{9}{25}{90} % игрек
+\tdplotsetcoord{U}{10}{21}{0} % hat y
+\tdplotsetcoord{V}{2.57}{25}{90} % hat beta y
+\tdplotsetcoord{T}{4.3}{15}{90} % hat x
+\tdplotsetcoord{W}{6}{35}{0} % hat beta x
+
+
+\draw[->] (O) -- (z) node[anchor=east]{$Z$};
+\draw[->] (O) -- (S) node[anchor=south east]{$X$};
+\draw[->] (O) -- (P) node[anchor=north west]{$Y$};
+\draw[->] (O) -- (T) node[anchor=north west]{\footnotesize$\hat X$};
+\draw[->] (O) -- (U) node[anchor=south east]{\footnotesize$\hat Y$};
+
+\draw (0,0.5) ellipse (4.5cm and 1.5cm) node[anchor=west, right=3.2cm]{\tiny$Lin^{\perp}(Z)$};
+
+\draw[->] (O) -- (yc) node[anchor=north east]{\small $\widetilde Y$};
+\draw[->] (O) -- (xc) node[anchor=north east]{\small $\widetilde X$};
+
+\draw[dashed] (S) -- (T);
+\draw[dashed] (pzx) -- (T);
+\draw[dashed] (P) -- (U);
+\draw[dashed] (pzy) -- (U);
+
+\draw[dashed] (P) -- (yc);
+\draw[dashed] (S) -- (xc);
+\draw[dashed] (S) -- (pzx);
+\draw[dashed] (P) -- (pzy);
+
+%\draw[dashed] (yc) -- (xcp);
+%\draw[dashed] (xc) -- (ycp);
+
+\draw[dashed] (T) -- (ycp);
+\draw[->] (O) -- (V) node[anchor=west]{\footnotesize$\hat \beta_{XY} Y$};
+\draw[->] (O) -- (ycp) node[anchor=north]{\footnotesize$\hat \beta_{XY} \widetilde Y$};
+
+\draw[dashed] (U) -- (xcp);
+\draw[->] (O) -- (W) node[anchor=north east]{\footnotesize$\hat \beta_{YX} X$};
+\draw[->] (O) -- (xcp) node[anchor=north]{\footnotesize$\hat \beta_{YX} \widetilde X$};
+
+\tkzMarkRightAngle[size=0.15](S,pzx,z);
+\tkzMarkRightAngle[size=0.15](P,yc,O);
+\tkzMarkRightAngle[size=0.15](S,xc,O);
+\tkzMarkRightAngle[size=0.15](T,pzx,z);
+\tkzMarkRightAngle[size=0.15](U,pzy,z);
+\tkzMarkRightAngle[size=0.15](P,pzy,z);
+
+\tdplotdrawarc{(O)}{0.15}{-36}{109}{anchor=north}{\tiny$\varphi$}
+\tdplotdrawarc{(pzy)}{0.15}{-36}{109}{}{}
+\tdplotdrawarc{(pzx)}{0.15}{-36}{109}{}{}
+
+\end{tikzpicture}
+\end{document}

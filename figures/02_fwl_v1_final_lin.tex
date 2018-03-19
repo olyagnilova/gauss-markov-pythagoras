@@ -1,0 +1,51 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\begin{tikzpicture}
+
+\tkzDefPoint(0,0){A}
+\tkzDefPoint(4,0){z}
+\tkzDefPoint(3,0){D}
+\tkzDefPoint(2,0){B}
+\tkzDefPoint(3,4){E}
+\tkzDefPoint(2,2.666){C}
+\tkzDefPoint(1,1.333){F}
+\tkzDefPoint(3,1.333){G}
+\tkzDefPoint(2,1.333){H}
+
+\draw[->] (A) -- (z) node[anchor=north]{$z$};
+\draw (A) -- (C);
+\draw (D) -- (G);
+\draw[dashed] (C) -- (E);
+\draw[dashed] (G) -- (E);
+\draw[dashed] (F) -- (H);
+\draw (C) -- (B);
+\draw[->, dashed] (A) -- (G) node[anchor=south east]{$\hat y$};
+
+\tkzLabelPoint[left](A){\small A}
+\tkzLabelPoint[below](B){\small B}
+\tkzLabelPoint[left](C){\small C}
+\tkzLabelPoint[below](D){\small D}
+\tkzLabelPoint[above](E){\small E}
+\tkzLabelPoint[left](F){\small F}
+\tkzLabelPoint[right](G){\small G}
+\tkzLabelPoint[right](H){\small H}
+\tkzDrawPoints(F,G,H);
+
+\tkzMarkRightAngle(A,B,C);
+\tkzMarkRightAngle(A,D,E);
+
+\end{tikzpicture}
+\end{document}

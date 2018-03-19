@@ -1,0 +1,38 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\tdplotsetmaincoords{100}{110}
+\begin{tikzpicture}[scale=9,tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\coordinate (un) at (1.75,1.5,0);
+\coordinate (x) at (-1.75,0.5,0);
+\coordinate (hun) at (0.875, 0.75, 0);
+
+\tdplotsetcoord{Y}{1}{50}{90}
+
+\draw[->] (O) -- (un) node[anchor=south west]{$\mathbf{1}$};
+\draw[->] (O) -- (Y) node[anchor=south west]{$y$};
+\draw[->] (O) -- (x) node[anchor=south east]{$x$};
+\draw[->] (O) -- (Yxy) node[anchor=south west]{$\hat y$};
+\draw[->] (Yxy) -- (Y) node [near start,right]{\small$\sqrt{RSS_{UR}}$};
+\draw[->] (hun) -- (Yxy) node[midway,below,rotate=-24]{\footnotesize $\sqrt{RSS_{R} -RSS_{UR}}$};
+\draw[dashed] (Y) -- (hun) node[midway,above,rotate=57]{\footnotesize$\sqrt{RSS_{R}}$};
+
+\tdplotsetthetaplanecoords{110}
+\tdplotdrawarc[tdplot_rotated_coords,thick]{(hun)}{0.06}{33}{114}{anchor=west}{$\varphi$}
+
+\end{tikzpicture}
+\end{document}

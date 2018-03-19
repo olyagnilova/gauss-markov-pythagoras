@@ -1,0 +1,37 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\tdplotsetmaincoords{100}{110}
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\coordinate (x3) at (0,0,1);
+
+\tdplotsetcoord{Y}{1}{50}{90}
+
+\draw[->] (O) -- (Y) node[anchor=south west]{$z$};
+\draw[->] (O) -- (Yxy) node[anchor=north west]{$H_2z$};
+\draw[->] (O) -- (x3) node[anchor=east]{$L_1$};
+\draw[->] (O) -- (Yz) node[anchor=east]{$H_1z$};
+\draw[dashed] (Y) -- (Yz);
+\draw[dashed] (Y) -- (Yxy);
+
+\draw (0,0.5) ellipse (0.8cm and 0.3cm) node[anchor=west, right=3cm]{$L_2$};
+\tdplotsetthetaplanecoords{110}
+\tdplotdrawarc[tdplot_rotated_coords]{(O)}{0.1}{47}{87}{anchor=west}{$\varphi$}
+
+
+\end{tikzpicture}
+\end{document}

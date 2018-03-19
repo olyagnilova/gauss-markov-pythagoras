@@ -1,0 +1,41 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\tdplotsetmaincoords{100}{110}
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\coordinate (un) at (1.75,1.5,0);
+\coordinate (x) at (-1.75,0.5,0);
+\coordinate (pun) at (0.7,0.6,0);
+
+\tdplotsetcoord{Y}{1}{50}{90}
+
+\draw[->] (O) -- (un) node[anchor=south west]{$\mathbf{1}$};
+\draw[->] (O) -- (Y) node[anchor=south west]{$y$};
+\draw[->] (O) -- (x) node[anchor=south east]{$x$};
+\draw[->] (O) -- (Yxy) node[anchor=north west]{$\hat y$};
+\draw[->] (Yxy) -- (Y) node[near start, right, black]{\footnotesize$\sqrt{RSS}$};
+\draw[->] (pun) -- (Y) node[midway, right, black]{\footnotesize$\sqrt{TSS}$};
+\draw[->] (pun) -- (Yxy) node[midway, above, black]{\footnotesize$\sqrt{ESS}$};
+\tkzMarkRightAngle[size=0.03](Y,Yxy,O);
+\tkzMarkRightAngle[size=0.03](Yxy,pun,O);
+\tkzMarkRightAngle[size=0.03](Y,pun,O);
+
+\tdplotsetthetaplanecoords{110}
+\tdplotdrawarc[tdplot_rotated_coords,red]{(pun)}{0.03}{33}{105}{anchor=west}{\footnotesize$\varphi$}
+
+\end{tikzpicture}
+\end{document}

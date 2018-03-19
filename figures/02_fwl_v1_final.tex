@@ -1,0 +1,58 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\tdplotsetmaincoords{100}{110}
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\coordinate (x) at (1.75,1.5,0);
+\coordinate (z) at (-1.75,0.5,0);
+\coordinate (hx) at (0.63, 0.54, 0);
+\coordinate (hz) at (-0.9625, 0.275, 0);
+\coordinate (pz) at (-0.77, 0.22, 0);
+\coordinate (hzz) at (-0.6825, 0.195, 0);
+\coordinate (longx) at (2.1875, 1.875, 0);
+
+\tdplotsetcoord{Y}{1}{50}{90}
+
+\draw[->] (O) -- (x) node[anchor=south]{\small C};
+\draw[->] (O) -- (Y) node[anchor=south east]{$y$};
+\draw[->] (O) -- (z) node[anchor=south east]{$z$};
+
+\draw[->] (hz) -- (Y) node[anchor=north west]{$\tilde{y}$};
+\tkzMarkRightAngle[size=0.03](Y,hz,O);
+
+\draw[->] (pz) -- (x) node[anchor=north, pos=0]{\small B};
+\tkzMarkRightAngle[size=0.03](x,pz,z);
+
+\tkzDefLine[parallel=through hz](pz,x);
+\tkzGetPoint{pxcl};
+\draw[dashed] (pxcl) -- (hz)  node[anchor=north west]{\small D};
+
+\draw[dashed] (Y) -- (Yxy);
+
+\draw[->] (hz) -- (Yxy) node[anchor=north west]{\small G};
+
+\draw[dashed] (Yxy) -- (hx);
+\draw[->] (O) -- (hx) node[anchor=south]{\small F};
+\draw[dashed] (Yxy) -- (hzz);
+\draw[->] (O) -- (hzz) node[anchor=east, pos=0]{\small A};
+\draw[dashed] (O) -- (Yxy);
+
+\draw[dashed] (x) -- (longx) node[anchor=south]{\small E};
+\draw[dashed] (pxcl) -- (longx);
+
+\end{tikzpicture}
+\end{document}

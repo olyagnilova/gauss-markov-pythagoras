@@ -1,0 +1,39 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\tdplotsetmaincoords{100}{110}
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\coordinate (x1) at (1.75,1.5,0);
+\coordinate (x2) at (-1.75,0.5,0);
+\coordinate (x3) at (0,0,1);
+
+\tdplotsetcoord{Y}{1}{50}{90}
+
+\draw[->] (O) -- (x1) node[anchor=north west]{$x_1$};
+\draw[->] (O) -- (Y) node[anchor=south west]{$y$};
+\draw[->] (O) -- (x2) node[anchor=south east]{$x_2$};
+\draw[->] (O) -- (Yxy) node[anchor=south west]{$\hat y$};
+\draw[->] (O) -- (x3) node[anchor=south]{$x_3$};
+\draw[->] (O) -- (Yz) node[anchor=east]{$\hat{\hat y}$};
+\draw[dashed] (Y) -- (Yz);
+\draw[dashed] (Y) -- (Yxy);
+
+\draw (0,0.5) ellipse (1.2cm and 0.4cm) node[anchor=west, right=3.2cm]{$colX$};
+
+
+\end{tikzpicture}
+\end{document}

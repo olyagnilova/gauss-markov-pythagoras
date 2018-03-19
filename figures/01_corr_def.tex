@@ -1,0 +1,30 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usetikzlibrary{calc}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\begin{tikzpicture}
+
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(4,0){X}
+\tkzDefPoint(2,3){Y}
+
+\draw[->] (O) -- (X) node[anchor=north east]{$X$};
+\draw[->] (O) -- (Y) node[anchor=east]{$Y$};
+
+\tkzMarkAngle[size=0.4](X,O,Y)
+\tkzLabelAngle[pos=0.6](X,O,Y){$\varphi$}
+
+\end{tikzpicture}
+\end{document}

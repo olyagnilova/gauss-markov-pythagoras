@@ -1,0 +1,34 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\tdplotsetmaincoords{100}{110}
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\coordinate (un) at (1.75,1.5,0);
+\coordinate (x) at (-1.75,0.5,0);
+\coordinate (pun) at (0.7,0.6,0);
+
+\tdplotsetcoord{Y}{1}{50}{90}
+
+\draw[->] (O) -- (un) node[anchor=south west]{$\mathbf{1}$};
+\draw[->] (O) -- (Y) node[anchor=south west]{$y$};
+\draw[->] (O) -- (x) node[anchor=south east]{$x$};
+\draw[->] (O) -- (Yxy) node[anchor=north west]{$\hat y$};
+\draw[->, blue] (pun) -- (Y) node[midway, right, black]{\footnotesize$\sqrt{TSS}$};
+\tkzMarkRightAngle[size=0.03](Y,pun,O);
+
+\end{tikzpicture}
+\end{document}

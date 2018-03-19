@@ -1,0 +1,27 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+\usepackage{pgfplots}
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\begin{tikzpicture}
+\draw[->] (0,0) -- (5,0) node[anchor=north]{$x$};
+\draw[->] (0,0) -- (0,5) node[anchor=east]{$y$};
+\fill (0.25,0.5) circle (1.5pt);
+\fill (4,3.5) circle (1.5pt);
+\fill (2,4) circle (1.5pt);
+\fill (4,1) circle (1.5pt);
+\fill (1.5,2.5) circle (1.5pt);
+\fill[red] (3,2.5) circle (1.7pt);
+\draw[->] (3,2.5) -- (3,3) node[anchor=east]{$v_1$};
+\draw[->] (3,2.5) -- (3.5,2.5) node[anchor=north]{$v_2$};
+\end{tikzpicture}
+\end{document}

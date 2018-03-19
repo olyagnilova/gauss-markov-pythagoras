@@ -1,0 +1,97 @@
+\section{ML}
+
+
+\subsection{Principal Component Analysis}
+
+\marginnote{
+\begin{theorem}
+Let $L$ be a $k$-dimensional subspace of $\mathbb{R}^n$.
+Then each vector $x$ in $\mathbb{R}^n$ can be written uniqely in the form
+\[
+x = h + p
+\]
+where $p$ is in $L$ and $h$ is in $L^{\perp}$.
+\end{theorem}
+\begin{proof}
+Let ${e_1, \ldots, e_k}$ be an orthogonal basis for $L$, and define $p$ as
+\[
+p = \frac{x \cdot e_1}{e_1 \cdot e_1} + \ldots + \frac{x \cdot e_k}{e_k \cdot e_k}.
+\]
+Being a linear combination of $e_1, \ldots, e_k$, $p$ is in $L$.
+Let $h = x - p$.
+Since each $e_{i}$, $i = 1, \ldots, k$ is orthogonal to all the rest basis vectors,
+it follows that for all $i$
+\begin{align*}
+h \cdot e_i &= (x - p) \cdot e_i \\
+&= x \cdot e_i - \left(\frac{x \cdot e_i}{e_i \cdot e_i}\right) \cdot e_i \underbrace{- 0 - 0 \ldots - 0}_{(k-1) \text{ times}} \\
+&= x \cdot e_i - x \cdot e_i = 0.
+\end{align*}
+Thus, we can conclude that $h$ is in $L^{\perp}$.
+
+To show that the decomposition stated in the theorem is unique,
+suppose there is another one: $x = h_1 + p_1$ where $h_1 \in L$ and $p_1 \in L$.
+Then $h + p = h_1 + p_1$ as both sides equal $x$ and
+\[
+p - p_1 = h - h_1.
+\]
+It follow that the vector $v = p - p_1$ is in $L$ and in $L^{\perp}$
+which is possible if and only if $v = 0$.
+\end{proof}
+
+From this theorem it directly follows that
+\[
+\lVert x \rVert^2 = \lVert h \rVert^2 + \lVert p \rVert^2.
+\]
+Thus, holding the observation vector $x$ fixed
+maximizing $\lVert h \rVert$ and minimizing $\lVert p \rVert$
+are equivalent in order to get the longest projection of $x$ onto $L$.
+}
+
+PCA is a tool to preserve as much variability in $n$-dimensional data as possible
+by projecting it onto $q$-dimensional subspace spanned by the principal components.
+There are two ways to find these principal components.
+One can either maximize the length of the projection of some vector $x$
+onto the $q$-dimensional subspace,
+or minimize the length of its orthogonal component.
+Both ways are equivalent which can be shown by the orthogonal decomposition theorem.
+However, there is also a geometrical interpretaion.
+
+\begin{theorem}
+In PCA the best-fit $q$-dinesional subspace for a set of observations $x_1, \ldots, x_n$
+is defined by solving either
+\[
+\sum_{n=1}^N \lVert h \rVert^2  \to \min_{v_1, \ldots, v_k}
+\]
+which minimizes the distance between the observation and the subspace, or
+\[
+\sum_{n=1}^N \lVert p \rVert^2  \to \max_{w_1, \ldots, w_k}.
+\]
+which maximizes the varince of projected data.
+\end{theorem}
+
+\begin{proof}
+Consider a space of $n$ observations and two factors.
+Additionaly assume that all the observations are centred and
+the best-fit line is already found.
+
+Let us drop the perpendiculars from all the observation points onto the best-fit line
+and denote them as $a_i$, $i = 1, \ldots, n$.
+Then there is a right triangle for each observation.
+We denote another leg as $b_i$ and the distance of observation point from the origin as $c_i$.
+Thus, for every point we can apply the Pythagorean theorem: $c_i^2 = a_i^2 + b_i^2$.
+Summing through all the observations, we get
+\begin{marginfigure}
+  \includegraphics[scale=0.7]{figures/05_pca.pdf}
+  \caption{Equivalence of minimizing the perpendicular lengths $a_i$ and
+  maximazing the projection length $b_i$}
+  \label{fig:pca}
+\end{marginfigure}
+\[
+\sum\limits_{i=1}^n c_i^2 = \sum\limits_{i=1}^n a_i^2 + \sum\limits_{i=1}^n b_i^2
+\]
+Being unable to change the distance of the observation from the origin,
+we can either minimize $\sum_{i=1}^n a_i^2$, or maximize $\sum_{i=1}^n b_i^2$
+in order to get the principal component.
+
+
+\end{proof}

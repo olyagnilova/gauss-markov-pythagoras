@@ -1,0 +1,47 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usetikzlibrary{calc}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\begin{tikzpicture}
+
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(-2,-3){x}
+\tkzDefPoint(3,-4){y}
+
+\draw[->] (O) -- (x) node[anchor=north east]{$\widetilde X$};
+\draw[->] (O) -- (y) node[anchor=north west]{$\widetilde Y$};
+\tkzMarkAngle[size=0.4](x,O,y)
+\tkzLabelAngle[pos=0.6](x,O,y){$\varphi$}
+
+\begin{pgfinterruptboundingbox}
+\tkzDefLine[perpendicular=through y, K=-.3](x,O);
+\tkzGetPoint{hy}
+\tkzDefPointBy[projection=onto x--O](hy)
+\tkzGetPoint{h}
+\tkzMarkRightAngle[size=0.15](x,h,y)
+\draw[dashed] (y) -- (h);
+\draw[->, dashed] (O) -- (h) node[anchor=east]{$\hat{\beta}_{YX} \widetilde X$};
+
+\tkzDefLine[perpendicular= through x, K=-.9](y,O);
+\tkzGetPoint{hx}
+\tkzDefPointBy[projection=onto y--O](hx)
+\tkzGetPoint{p}
+\tkzMarkRightAngle[size=0.15](O,p,x)
+\draw[dashed] (x) -- (p);
+\draw[->, dashed] (O) -- (p) node[anchor=west]{$\hat{\beta}_{XY} \widetilde Y$};
+\end{pgfinterruptboundingbox}
+
+\end{tikzpicture}
+\end{document}
