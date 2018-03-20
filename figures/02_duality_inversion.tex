@@ -1,0 +1,48 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usetikzlibrary{calc}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\begin{tikzpicture}[scale=3]
+
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(0.866,0.5){e1}
+\tkzDefPoint(0.433,0.25){a1}
+\tkzDefPoint(0.25,-0.433){a2}
+\tkzDefPoint(0.75,-1.299){a}
+\tkzDefPoint(1.25,0.9){e2long} % 1.8 * e2
+
+\draw (O) circle (1cm);
+\draw [->] (O) -- (e1);
+\draw [->] (O) -- (a1) node[anchor=south east]{$\tilde{a}$};
+\draw [->] (O) -- (a2) node[anchor=east]{$\tilde{\tilde{a}}$};
+\draw [->] (O) -- (a) node[anchor=east]{$a$};
+
+\begin{pgfinterruptboundingbox} % remove blank space
+\tkzDefLine[parallel=through a1](O,a);
+\tkzGetPoint{p1}
+\draw (p1) -- (a1);
+
+\tkzDefLine[parallel=through a](O,a1);
+\tkzGetPoint{p2}
+\draw (p2) -- (a);
+
+\tkzInterLL(p1,a1)(p2,a);
+\tkzGetPoint{C}
+\end{pgfinterruptboundingbox}
+
+\fill[pattern=north west lines, pattern color=gray] (a1) -- (O) -- (a) -- (C);
+\node[text width=1cm] at (0.6,-0.5) {$S=1$};
+\end{tikzpicture}
+\end{document}
