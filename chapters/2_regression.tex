@@ -805,7 +805,80 @@ Following the same procedure as described above, we finally get the desired resu
 & \hat{v}_1 = \frac{1}{\lambda_1} e_1 \to \lambda_1 e_1 = x_1 \\
 & \hat{v}_2 = \frac{1}{\lambda_2} e_2 \to \lambda_2 e_2 = x_2
 \end{align*}
+\end{proof}
 
+\subsection{Gauss-Markov theorem}
 
+% Hansen
+\marginnote{
+Consider an estimator $\beta$ which is a linear function of $Y$:
+\[
+\beta = A^T Y
+\]
+where $A$ is an $n \times k$ function of $X$ such that $A^T X = I_k$.
+From
+\begin{align*}
+\Var(\hat\beta_{OLS}) &= (X^T X)^{-1} \sigma^2 \\
+\Var(A^T Y) &= A^T A \sigma^2
+\end{align*}
+it follows that it is sufficient to prove that $A^T A - (X^T X)^{-1}$
+is positive semi-definite. Set $C = A - X(X^T X)^{-1}$ and note that $X^T C = 0$, then
+\begin{multline*}
+A^T A - (X^T X)^{-1} \\
+= (C + X(X^T X)^{-1})^T (C + X(X^T X)^{-1}) - (X^T X)^{-1} \\
+= C^T C + C^T X(X^T X)^{-1} + (X^T X)^{-1} X^T C + \\
+(X^T X)^{-1} X^T X(X^T X)^{-1} - (X^T X)^{-1} \\
+= C^T C
+\end{multline*}
+Matrix $C^T C$ is positive semi-definite since
+\[
+\forall a \not= 0 \qquad a^T C^T C a = \lVert C a \rVert^2 \geq 0
+\]
+}
+
+\begin{theorem}
+In the homoskedastic linear regression model the best (minimum-variance) linear
+unbiased estimator is given by the ordinary least squares.
+\end{theorem}
+
+\begin{proof}
+Consider an OLS estimator and an alternative one:
+\begin{align*}
+\hat{\beta}_{OLS} &= (X^T X)^{-1} X^T y = A^T y \\
+\hat{\beta}_{alt} &= A^T_{alt} y
+\end{align*}
+Note that $A^T X = I_{k}$, then the following holds for all $\beta$:
+\begin{align*}
+A^T X \beta &= \beta \\
+A^T_{alt} X \beta &= \beta
+\end{align*}
+Taking the differnce of these equations, we obtain:
+\[
+(A^T_{alt} - A^T) X \beta = 0 \Rightarrow (A^T_{alt} - A^T) \perp X
+\]
+If we treat the coefficients separately and consider, for instance, $\beta^{(2)}$,
+we get the following result
+\[
+({a^{(2)}}^T_{alt} - {a^{(2)}}^T) \perp X
+\]
+where $a^{(2)}_{alt}$ and $a^{(2)}$ are the second columns of matrices
+$A_{alt}$ and $A$ correspondingly.
+Since $a^{(2)} \in Lin(col X)$, it follows that $a^{(2)}_{alt} \not \in Lin(col X)$.
+
+\begin{marginfigure}[3\baselineskip]
+\includegraphics[scale=0.7]{figures/02_gmt.pdf}
+\label{fig:gmt}
+\caption{Gauss-Markov theorem for the case of three regressors.}
+\end{marginfigure}
+
+Now we can expxress the variances of both estimators in terms of $a^{(2)}_{alt}$ and $a^{(2)}$:
+\begin{align*}
+\Var\left(\hat{\beta}^{(2)}_{OLS}\right) &= \Var\left({a^{(2)}}^T y\right) = {a^{(2)}}^T \sigma^2 I_{k} a^{(2)} = \lVert a^{(2)} \rVert^2 \\
+\Var\left(\hat{\beta}^{(2)}_{alt}\right) &= \Var\left({a^{(2)}}^T_{alt} y\right) =  {a^{(2)}}^T_{alt} \sigma^2 I_{k} a^{(2)}_{alt} = \lVert a_{alt}^{(2)} \rVert^2
+\end{align*}
+Since vectors $a^{(2)}$, $a^{(2)}_{alt}$ and $a^{(2)} - a^{(2)}_{alt}$
+form a right triangle and $a^{(2)}_{alt} \not \in Lin(col X)$,
+the vector $\lVert a_{alt}^{(2)} \rVert^2$ must be longer than $a^{(2)}$,
+and the corresponding estimator must have higher variance.
 
 \end{proof}

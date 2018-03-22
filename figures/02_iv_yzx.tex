@@ -1,0 +1,41 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\tdplotsetmaincoords{100}{110}
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\coordinate (z) at (1.25,1.5,0);
+\coordinate (x) at (-1.8,0.8,0);
+\coordinate (hx) at (0.875, 1.05, 0);
+\coordinate (betahx) at (0.625,0.75,0);
+\coordinate (betax) at (-1.26, 0.56, 0);
+
+\tdplotsetcoord{Y}{1}{40}{90}
+
+\draw[->] (O) -- (z) node[anchor=south]{$z$};
+\draw[->] (O) -- (Y) node[anchor=south west]{$y = \hat \beta_w w + \hat u + \hat \beta_x x$};
+\draw[->] (O) -- (x) node[anchor=north]{$x$};
+\draw[->] (hx) -- (x);
+\draw[->] (O) --  (hx) node[anchor=south]{$\hat x$};
+\draw[->] (O) --  (betahx) node[anchor=south east]{$\hat \beta_{IV} \hat x$};
+\draw[->] (betahx) -- (betax) node[anchor=north]{$\hat \beta_x x$};
+\draw[->] (betahx) -- (Y);
+
+\tkzMarkRightAngle[size=0.03](Y,betahx,O);
+\tkzMarkRightAngle[size=0.03](O,betahx,betax);
+\tkzMarkRightAngle[size=0.03](O,hx,x);
+\end{tikzpicture}
+\end{document}

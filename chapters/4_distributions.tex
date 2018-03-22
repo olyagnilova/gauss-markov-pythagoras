@@ -262,9 +262,9 @@ where $z_i \sim \mathcal{N}(0, \sigma^2), i=0, \ldots, k$ and are independent.
 Let $L_1$ be 1-dimensional subspace in $\mathbb{R}^{k+1}$, $L_2$ an orthogonal to $L_1$ subspace.
 Then
 \[
-T = \frac{\lVert H_1 z \rVert}{\lVert H_2 z \rVert / \sqrt{dim L_2}}
+T = \frac{\langle z, a \rangle}{\lVert H_2 z \rVert / \sqrt{dim L_2}}
 \]
-where $\lVert H_1 z \rVert$ is the length of projection onto $L_1$ of the vector $z$,
+where $a$ is a unit vector,
 $\lVert H_2 z \rVert$ — the length of the projection onto $L_2$,
 follows Student's distribution with $dim L_2$ degrees of freedom.
 \end{definition}
@@ -274,15 +274,15 @@ $k$-dimensional $L_2$.
 
 Previously we showed that, the squared length of projection follows
 the chi-squared distribution with the degrees of freedom equal to the dimension
-onto which the vector was projected. Thus, $\lVert H_1 z \rVert^2 \sim \chi^2_1$
+onto which the vector was projected. Thus, $\langle z, a \rangle^2 \sim \chi^2_1$
 and $\lVert H_2 z \rVert^2 \sim \chi^2_{k}$.
 Now we can express $T^2$ as a ratio of the per-dimension lengths squared:
 \[
-T^2 = \frac{\lVert H_1 z \rVert^2}{\lVert H_2 z \rVert^2 / dim L_2}
+T^2 = \frac{\langle z, a \rangle^2}{\lVert H_2 z \rVert^2 / dim L_2}
 \]
 Taking the square root of both sides, we obtain:
 \[
-T = \frac{\lVert H_1 z \rVert}{\lVert H_2 z \rVert / \sqrt{dim L_2}} = \tg \varphi
+T = \frac{\langle z, a \rangle}{\lVert H_2 z \rVert / \sqrt{dim L_2}} = \tg \varphi
 \]
 The latter equlity can be illustarted with a $3$-dimensional example (see Figure~\ref{fig:f_dist}).
 

@@ -1,0 +1,45 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\tdplotsetmaincoords{100}{110}
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\coordinate (x) at (1.75,1.5,0);
+\coordinate (w) at (-1.75,0.5,0);
+\coordinate (hx) at (0.63, 0.54, 0);
+\coordinate (hw) at (-0.6825, 0.195, 0);
+\coordinate (uhat) at (-0.27, 0.35, 0.57);
+
+\tdplotsetcoord{Y}{1}{50}{90}
+
+\draw[->] (O) -- (x) node[anchor=south west]{$x$};
+\draw[->] (O) -- (Y) node[anchor=south west]{$y$};
+\draw[->] (O) -- (w) node[anchor=south east]{$w$};
+
+\draw[->] (O) -- (Yxy) node[anchor=north west]{$\hat y$};
+\draw[dashed] (Y) -- (Yxy);
+
+\draw[dashed] (Yxy) -- (hx);
+\draw[->] (O) -- (hx) node[anchor=south]{\small $\hat\beta_x x$};
+\draw[dashed] (Yxy) -- (hw);
+\draw[->] (O) -- (hw) node[anchor=north]{\small $\hat\beta_w w$};
+\tkzMarkRightAngle[size=0.03](Y,Yxy,O);
+
+\draw[->] (O) -- (uhat) node[anchor=east]{\small $\hat \beta_w w + \hat u$};
+\draw[->] (uhat) -- (Y) node[midway, above]{\small  $\hat\beta_x x$};
+\draw[dashed] (hw) -- (uhat);
+\end{tikzpicture}
+\end{document}
