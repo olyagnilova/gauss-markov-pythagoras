@@ -51,6 +51,7 @@
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
+      <file>blx-unicode.def</file>
       <file>blx-compat.def</file>
       <file>biblatex.def</file>
       <file>numeric.bbx</file>
@@ -77,6 +78,9 @@
     </provides>
     <requires type="dynamic">
       <file>paper.bcf</file>
+    </requires>
+    <requires type="editable">
+      <file>references.bib</file>
     </requires>
   </external>
 </requests>

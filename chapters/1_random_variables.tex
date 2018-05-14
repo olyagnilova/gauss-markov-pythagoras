@@ -36,7 +36,7 @@ between them is calculated with the formula
 \]
 The same applies for the random variables and it is already clear that
 two random variables are uncorrelated if and only if their scalar product
-equals to $0$. Additionally, it means that these two random variables
+equals $0$. Additionally, it means that these two random variables
 are orthogonal in the vector space.
 
 The analogue for $cos(a, b)$ in the vector space of all the random
@@ -54,7 +54,7 @@ automatically follows that the correlation coefficient can range from $-1$ to $1
 \end{marginfigure}
 
 A useful property of the geoemtry of random variables is that all the
-geometric theorems still hold. For instance, the Pythogorean theorem can
+geometric theorems still hold. For instance, the Pythagorean theorem can
 be formulated as follows: if the ranadom variables $X$ and $Y$ are uncorrelated
 (which implies that they are orthogonal), then the variance of their sum equals
 the sum of their variances:
@@ -68,7 +68,7 @@ the legs squared.
 
 Another important geometric tool is projection.
 Recall that for any two vectors the scalar product $\langle a, b \rangle$
-can be interpreted as the length of projected $b$ multuplied by the length of $a$.
+can be interpreted as the length of projected $b$ multiplied by the length of $a$.
 The projection itself is $\cos(a, b) b$.
 Same holds for the random variables.
 The projection of such a random variable $Y$ onto $\{cX| c \in \mathbb{R}\}$ is
@@ -94,12 +94,11 @@ coefficient squared:
 \marginnote{
 Here is the proof for the case when $X$ and $Y$ are both discrete. Let $\E(Y|X) = g(X)$.
 \begin{align*}
-\E(g(X)) &= \sum_x g(x) \P(X=x) \\
+&\E(g(X)) = \sum_x g(x) \P(X=x) \\
 &= \sum_x \left( \sum_y y \P(Y=y|X=x) \right) \P(X=x) \\
 &= \sum_x \sum_y y  \P(X=x) \P(Y=y|X=x)  \\
 &= \sum_y y \sum_x \P(X=x, Y=y) \\
-&= \sum_y y \P(Y=y) \\
-&= \E(Y)
+&= \sum_y y \P(Y=y) = \E(Y)
 \end{align*}
 The proof in case of continous random variables is absolutely analogous.
 }
@@ -113,18 +112,18 @@ For any random variable $X$ and $Y$,
 
 \begin{proof}
 
-Consider the vector space of all the random variables.  The random variable
-which can be described as functions $h(X)$ of $X$ form a subspace of that vector
+Consider a vector space of all the random variables.  The random variables
+which can be described as functions of $X$ form a subspace of that vector
 space, represented as a plane $\alpha$ in Figure~\ref{fig:adams}.
 Another subspace is a subspace of constants, denoted as a vector $\mathbf{1} \in \alpha$.
 
 In order to obtain $\E(Y|X)$, first, we need to project $Y$ onto the subspace
-corresponding to $X$. As a result of this step, we get $\E(Y|X)$ — the function
-of $X$ that predicts $Y$ the best. Next, projecting $\E(Y|X)$ onto the space
-of all constants, we end up with $E(Y)$.
+of all the functions of $X$. As a result of this step, we get $\E(Y|X)$ — the function
+of $X$ that predicts $Y$ the best (the function which gives the lowest MSE).
+Next, projecting $\E(Y|X)$ onto the space of all constants, we obtain $E(Y)$.
 
 Notice that the vector $Y - \E(Y|X)$ (which is also called the residual) is
-perpendicular to the plane $\alpha$. Moreover, the vecotr $\E(Y|X) - E(Y)$ is
+perpendicular to the plane $\alpha$. Particularly, the vecotr $\E(Y|X) - E(Y)$ is
 perpendicular to the vector of constants $\mathbf{1}$. Thus, we can apply
 the theorem of three perpendiculars and conclude that the vector $Y - \E(Y)$ is
 also perpendicular to the vector of constants $\mathbf{1}$.
@@ -146,23 +145,6 @@ and direct projection of $Y$ onto $\mathbf{1}$.}
 
 \subsection{MSE decomposition}
 
-\marginnote{
-\begin{align*}
-MSE(\hat \theta) &= \E((\hat \theta - \theta)^2) \\
-&= \E \left[ \left( \hat \theta - \E(\hat \theta) +  \E(\hat \theta) - \theta \right) \right] \\
-&= \E \left[ \left( \hat \theta - \E(\hat \theta) \right)^2 + 2 \left( (\hat \theta - \E(\hat \theta)) (\E(\hat \theta) - \theta ) \right) \right. \\
-&+ \left. \left( \E(\hat \theta) - \theta  \right)^2 \right] \\
-&= \E \left[\left( \hat \theta - \E(\hat \theta) \right)^2 \right] \\
-&+ 2 \E \left[\left( (\hat \theta - \E(\hat \theta)) (\E(\hat \theta) - \theta ) \right) \right] \\
-&+ \E \left[\left( \E(\hat \theta) - \theta  \right)^2 \right] \\
-&= \E \left[\left( \hat \theta - \E(\hat \theta) \right)^2 \right] \\
-&+ 2 (\E(\hat \theta - \E(\hat \theta))) \E(\hat \theta - \E(\hat \theta)) \\
-&+ \E \left[\left( \E(\hat \theta) - \theta  \right)^2 \right] \\
-&= \E \left[\left( \hat \theta - \E(\hat \theta) \right)^2 \right] + \E \left[\left( \E(\hat \theta) - \theta  \right)^2 \right] \\
-&= \Var(\hat \theta) + \E \left[\left( \E(\hat \theta) - \theta  \right)^2 \right]
-\end{align*}
-}
-
 \begin{theorem}
 The mean squared error of an estimator $\hat \theta$ with respect to an unknown
 parameter $\theta$ defined as $MSE(\hat \theta) = \E((\hat \theta - \theta)^2)$
@@ -171,6 +153,22 @@ can be decomposed into the sum of the variance of the estimator and its squared 
 MSE(\hat \theta) = \Var(\hat \theta) + \E \left[\left( \E(\hat \theta) - \theta  \right)^2 \right]
 \]
 \end{theorem}
+
+\marginnote{
+\begin{align*}
+&MSE(\hat \theta) = \E((\hat \theta - \theta)^2) \\
+&= \E \left[ \left( \hat \theta - \E(\hat \theta) +  \E(\hat \theta) - \theta \right)^2 \right] \\
+&= \E \left[ \left( \hat \theta - \E(\hat \theta) \right)^2 + 2  (\hat \theta - \E(\hat \theta)) (\E(\hat \theta) - \theta )  \right. \\
+&+ \left. \left( \E(\hat \theta) - \theta  \right)^2 \right] \\
+&= \E \left[\left( \hat \theta - \E(\hat \theta) \right)^2 \right] + 2 \E (\hat \theta - \E(\hat \theta)) (\E(\hat \theta) - \theta ) \\
+&+ \E \left[\left( \E(\hat \theta) - \theta  \right)^2 \right] \\
+&= \E \left[\left( \hat \theta - \E(\hat \theta) \right)^2 \right] \\
+&+ 2 \E(\hat \theta - \E(\hat \theta)) \E(\hat \theta - \E(\hat \theta)) \\
+&+ \E \left[\left( \E(\hat \theta) - \theta  \right)^2 \right] \\
+&= \E \left[\left( \hat \theta - \E(\hat \theta) \right)^2 \right] + \E \left[\left( \E(\hat \theta) - \theta  \right)^2 \right] \\
+&= \Var(\hat \theta) + \E \left[\left( \E(\hat \theta) - \theta  \right)^2 \right]
+\end{align*}
+}
 
 \begin{proof}
 We start with a random variable $\theta$ and its estimate $\hat \theta$ in the
@@ -192,8 +190,10 @@ MSE(\hat \theta) &= \Var(\hat \theta) + \E((\E(\hat \theta) - \theta)^2)
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.6\linewidth]{figures/01_mse_decomposition.pdf}
-\caption{Decomposition of mean squred error into the variance and the bias squared.}
+\caption{Decomposition of mean squred error into the variance and the bias squared
+$\left(a = \sqrt{\lVert\hat\theta - \E(\hat\theta)\rVert^2} \right.$, $b = \sqrt{\lVert \theta - \E(\hat\theta) \rVert^2}$, $\left. c = \sqrt{\lVert \hat\theta - \theta \rVert^2} \right)$}
 \label{fig:mse_decomposed}
+\setfloatalignment{b}
 \end{center}
 \end{figure}
 

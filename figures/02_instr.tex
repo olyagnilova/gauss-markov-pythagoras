@@ -1,0 +1,56 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\tdplotsetmaincoords{100}{110}
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\coordinate (x) at (1.5,1.8,0);
+\coordinate (z) at (-1.75,0.5,0);
+\coordinate (hz) at (-1.1375, 0.325, 0);
+\coordinate (px) at (0.75, 0.9, 0);
+\coordinate (pz) at (-0.56875, 0.1625, 0);
+\coordinate (lpx) at (1.31, 1.21, 0);
+\coordinate (lpz) at (-1, -0.08, 0);
+\coordinate (vpx) at (1.31, 1.27, 0.6);
+\coordinate (vpz) at (-1, -0.05, 0.6);
+
+\tdplotsetcoord{Y}{0.9}{50}{90}
+
+\draw[->] (O) -- (x) node[anchor=south west]{$C$};
+\draw[->] (O) -- (Y) node[anchor=south]{$y$};
+\fill (Y) circle [radius=0.2pt, fill opacity = 0.5];
+\draw[->] (O) -- (z) node[anchor=north west]{$z$};
+
+\draw[dashed] (hz) -- (x);
+\draw[dashed] (px) -- (pz);
+\draw[->] (px) -- (Y);
+\draw[->] (O) -- (pz) node[anchor=north west]{$A$};
+\draw[->] (O) -- (hz) node[anchor=north]{$B$};
+\draw[->] (O) -- (px) node[anchor=south ]{$D$};
+\draw[->] (pz) -- (Y);
+
+% drawing plane
+\draw[dashed] (pz) -- (lpz);
+\draw[dashed] (px) -- (lpx);
+\draw[dashed] (lpx) -- (vpx);
+\draw[dashed] (lpz) -- (vpz);
+\draw[dashed] (vpx) -- (vpz) node [anchor=west]{$\alpha$};
+
+\tkzMarkRightAngle[size=0.03](x,hz,z);
+\tkzMarkRightAngle[size=0.03](px,pz,z);
+
+\end{tikzpicture}
+\end{document}

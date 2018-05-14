@@ -854,12 +854,12 @@ A^T_{alt} X \beta &= \beta
 \end{align*}
 Taking the differnce of these equations, we obtain:
 \[
-(A^T_{alt} - A^T) X \beta = 0 \Rightarrow (A^T_{alt} - A^T) \perp X
+\left(A^T_{alt} - A^T\right) X \beta = 0 \Rightarrow \left(A^T_{alt} - A^T\right) \perp X
 \]
 If we treat the coefficients separately and consider, for instance, $\beta^{(2)}$,
 we get the following result
 \[
-({a^{(2)}}^T_{alt} - {a^{(2)}}^T) \perp X
+\left({a^{(2)}}^T_{alt} - {a^{(2)}}^T\right) \perp X
 \]
 where $a^{(2)}_{alt}$ and $a^{(2)}$ are the second columns of matrices
 $A_{alt}$ and $A$ correspondingly.
@@ -873,12 +873,92 @@ Since $a^{(2)} \in Lin(col X)$, it follows that $a^{(2)}_{alt} \not \in Lin(col 
 
 Now we can expxress the variances of both estimators in terms of $a^{(2)}_{alt}$ and $a^{(2)}$:
 \begin{align*}
-\Var\left(\hat{\beta}^{(2)}_{OLS}\right) &= \Var\left({a^{(2)}}^T y\right) = {a^{(2)}}^T \sigma^2 I_{k} a^{(2)} = \lVert a^{(2)} \rVert^2 \\
-\Var\left(\hat{\beta}^{(2)}_{alt}\right) &= \Var\left({a^{(2)}}^T_{alt} y\right) =  {a^{(2)}}^T_{alt} \sigma^2 I_{k} a^{(2)}_{alt} = \lVert a_{alt}^{(2)} \rVert^2
+\Var\left(\hat{\beta}^{(2)}_{OLS}\right) &= \Var\left({a^{(2)}}^T y\right) = {a^{(2)}}^T \sigma^2 I_{k} a^{(2)} = \sigma^2 \left\lVert a^{(2)} \right\rVert^2 \\
+\Var\left(\hat{\beta}^{(2)}_{alt}\right) &= \Var\left({a^{(2)}}^T_{alt} y\right) =  {a^{(2)}}^T_{alt} \sigma^2 I_{k} a^{(2)}_{alt} = \sigma^2 \left\lVert a_{alt}^{(2)} \right\rVert^2
 \end{align*}
 Since vectors $a^{(2)}$, $a^{(2)}_{alt}$ and $a^{(2)} - a^{(2)}_{alt}$
 form a right triangle and $a^{(2)}_{alt} \not \in Lin(col X)$,
-the vector $\lVert a_{alt}^{(2)} \rVert^2$ must be longer than $a^{(2)}$,
+the vector $\left\lVert a_{alt}^{(2)} \right\rVert^2$ must be longer than $a^{(2)}$,
 and the corresponding estimator must have higher variance.
 
 \end{proof}
+
+\subsection{Geometry of instrumental variables}
+
+Consifder a model with an endogenity problem, i.e. explanotary variable $x$
+is correlated with the error term $u$:
+\[
+y = \beta x + u
+\]
+Assume there is an instrument $z$ which is dependent with the problematic regressor $x$
+but uncorrelated with the error term $u$.
+The 2SLS procedure tells us to perform the following steps.
+\begin{enumerate}
+  \item Regress $x$ onto $z$ and get the vector of predicted values $\hat x$,
+  \item Regress $y$ onto $\hat x$.
+\end{enumerate}
+These steps result in $\beta_{IV}$ estimator which is illustrated in Figure~\ref{fig:instrumental}.
+
+The same result could be obtained with the oblique projection.
+That is projecting $y$ onto $x$ along the vector perpendicular to the span of $z$.
+
+\begin{marginfigure}
+\includegraphics[scale=0.85]{figures/02_instr.pdf}
+\caption{Geometry of instrumental variables. $A$ stands for $\hat \beta_{IV} \hat x$,
+$B$ — $\hat x$, $C$ — $x$, $D$ — $\hat \beta_{IV} x$.}
+\label{fig:instrumental}
+\end{marginfigure}
+
+The equivalence of these two methods holds due to the similarity of triangles.
+Consider a plane $\alpha$ which satisfies the property of being perpendicular
+to the span of $z$, $\alpha \perp z$.
+Vectors $x$, $z$ and $\hat x$ form a triangle which is denoted as $\bigtriangleup OBC$
+where $\overrightarrow{OB} = \hat{x}$, $\overrightarrow{OC} = x$.
+In order to get an oblique projection of $y$ onto $x$ we could either
+project $y$ directly onto $x$ staying in the plane $\alpha$
+or get the same result in two steps. First, project $y$ onto $z$
+and then project the result onto $x$ which gives the same outcome
+by the theorem of three perpendiculars. Thus, we get another triangle $\bigtriangleup OAD$
+where $\overrightarrow{OA} = \hat \beta_{IV} \hat x$, $\overrightarrow{OD} = \hat \gamma x$.
+Since triangles $\bigtriangleup OBC$ and $\bigtriangleup OAD$ are similar
+it follows that $\frac{OD}{OC} = \frac{OA}{OB}$ which means that $\hat \gamma = \hat \beta_{IV}$.
+
+
+\subsection{Geometry of proxy variables}
+
+Consider a model
+\[
+y = \beta_1 x + \beta_2 w + u
+\]
+where the error term $u$ is not correlated with the regressors.
+Suppose that $w$ is an unobservable variable.
+One way to deal with this problem and get a consistent estimator of $\beta_1$ is to use a proxy variable.
+In order to clearly state its properties we decompose the unobservable variable
+into a sum of a multiple of the proxy ($pr$) and a part that is uncorrelated
+with the proxy ($\hat \nu$):
+\[
+\hat w = \gamma \cdot pr + \hat \nu
+\]
+Then the proxy variable must satisfy the following properties.
+\begin{enumerate}
+  \item It must be correlated with the unobservable variable $w$, $pr \not\perp w$.
+  \item The error term $\hat u$ must be uncorrelated with the proxy variable, $pr \perp \hat u$.
+  \item The error term $\hat \nu$ must be uncorrelated with the regressor $x$, $x \perp \hat \nu$.
+\end{enumerate}
+
+\begin{marginfigure}
+\includegraphics[scale=0.85]{figures/02_proxy.pdf}
+\caption{Geometry of proxy variables. }
+\label{fig:proxy}
+\end{marginfigure}
+
+To get a consistent estimator of $\beta_1$ we need to regress $y$ onto $x$ and $pr$.
+Consistency is illustarted in Figure~\ref{fig:proxy}.
+Suppose we could get the $\hat y$ by performing the original regression of
+$y$ onto $x$ and $w$. Then, $\hat y$ could be decomposed in a sum of
+$\hat \beta_1 x$ and $\hat \beta_2 w$.
+Notice, that $\hat y$ is both projection of $y$ onto $w$, $x$ and
+onto $w$, $x$, $pr$ due to the property of $\hat \nu$ being orthogonal to $x$.
+When projected onto the plane spanned by $x$ and $pr$, the $\hat \beta_1 x$
+component stays the same as it is already in this plane
+while $\hat \beta_2 w$ projects onto the span of $pr$ by the second property of proxy variable.

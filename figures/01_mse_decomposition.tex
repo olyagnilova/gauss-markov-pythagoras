@@ -29,11 +29,11 @@
 \tkzDefPoint(4,3){Y}
 
 \draw[->] (O) -- (X) node[anchor=north]{$\E(\hat\theta)$};
-\draw[->] (X) -- (Y) node[midway,above,rotate=90]{\tiny$\sqrt{\lVert\hat\theta - \E(\hat\theta)\rVert^2}$};
+\draw[->] (X) -- (Y) node[midway,above, left]{\small $a$};
 \draw[->] (O) -- (Y) node[anchor=south]{$\hat\theta$};
 \draw[->] (X) -- (T) node[anchor=north]{$\theta$}
-                     node[midway,above]{\tiny$\sqrt{\lVert \theta - \E(\hat\theta) \rVert^2}$};
-\draw[->] (T) -- (Y) node[midway,above,rotate=-56]{\tiny$\sqrt{\lVert \hat\theta - \theta \rVert^2}$};
+                     node[midway,above]{\small$b$};
+\draw[->] (T) -- (Y) node[midway,above,right]{\small$c$};
 
 
 \end{tikzpicture}

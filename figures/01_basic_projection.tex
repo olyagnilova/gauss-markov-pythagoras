@@ -27,11 +27,11 @@
 \tkzDefPoint(4,0){X}
 \tkzDefPoint(2,3){Y}
 
-\draw[->] (O) -- (X) node[anchor=north east]{$X$};
-\draw[->, blue] (O) -- (Y) node[anchor=east, color=black]{$Y$};
+\draw[->] (O) -- (X) node[anchor=north]{$X$};
+\draw[->, blue] (O) -- (Y) node[anchor=south, color=black]{$Y$};
 
-\tkzMarkAngle[size=0.4](X,O,Y)
-\tkzLabelAngle[pos=0.6](X,O,Y){$\varphi$}
+\tkzMarkAngle[size=0.4](X,O,Y) % draw arc
+\tkzLabelAngle[pos=0.6](X,O,Y){$\varphi$} % add label
 
 \begin{pgfinterruptboundingbox} % remove blank space
 \tkzDefLine[perpendicular=through Y](O,X);
@@ -40,10 +40,9 @@
 \tkzGetPoint{yy}
 \draw[dashed] (Y) --(yy);
 \tkzMarkRightAngle(Y,yy,X);
-\end{pgfinterruptboundingbox} % remove blank space
+\end{pgfinterruptboundingbox}
 
 \draw[->, dashed, blue] (O) -- (yy) node[anchor=north, color=black]{$\hat Y$};
-
 
 \end{tikzpicture}
 \end{document}

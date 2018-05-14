@@ -51,39 +51,40 @@
 
 \draw (0,0.5) ellipse (4.5cm and 1.5cm) node[anchor=west, right=3.1cm]{\footnotesize$Lin^{\perp}(Z)$};
 
-\draw[->] (O) -- (yc) node[anchor=north east]{\small $\widetilde Y$};
+\draw[->] (O) -- (yc) node[anchor=north]{\small $\widetilde Y$};
 \draw[->] (O) -- (xc) node[anchor=north east]{\small $\widetilde X$};
 
-\draw[->, blue] (T) -- (S) node[midway,below]{\small$\hat u$};
+\draw[dashed] (S) -- (T);
 \draw[dashed] (pzx) -- (T);
-\draw[->,red] (U) -- (P) node[midway,below]{\small $\hat v$};
+\draw[dashed] (P) -- (U);
 \draw[dashed] (pzy) -- (U);
 
+\draw[dashed] (P) -- (yc);
 \draw[dashed] (S) -- (xc);
 \draw[dashed] (S) -- (pzx);
-\draw[dashed] (P) -- (yc);
 \draw[dashed] (P) -- (pzy);
 
+%\draw[dashed] (yc) -- (xcp);
+%\draw[dashed] (xc) -- (ycp);
+
 \draw[dashed] (T) -- (ycp);
-\draw[->, dashed, blue] (ycp) -- (xc) node[midway, below]{\small$\tilde u$};
+\draw[->] (O) -- (V) node[anchor=west]{\footnotesize$\hat \beta_{XY} Y$};
+\draw[->] (O) -- (ycp) node[anchor=north]{\footnotesize$\hat \beta_{XY} \widetilde Y$};
+
 \draw[dashed] (U) -- (xcp);
-\draw[dashed,->,red] (xcp) -- (yc) node[midway,below]{\small$\tilde v$};
+\draw[->] (O) -- (W) node[anchor=north east]{\footnotesize$\hat \beta_{YX} X$};
+\draw[->] (O) -- (xcp) node[anchor=north]{\footnotesize$\hat \beta_{YX} \widetilde X$};
 
 \tkzMarkRightAngle[size=0.15](S,pzx,z);
-\tkzMarkRightAngle[size=0.15](S,xc,O);
-\tkzMarkRightAngle[size=0.15](T,pzx,z);
-\tkzMarkRightAngle[size=0.15](S,T,pzx);
-\tkzMarkRightAngle[size=0.15](xc,ycp,O);
-
 \tkzMarkRightAngle[size=0.15](P,yc,O);
-\tkzMarkRightAngle[size=0.15](U,pzy,z);
+\tkzMarkRightAngle[size=0.15](S,xc,O);
+%\tkzMarkRightAngle[size=0.15](T,pzx,z);
+%\tkzMarkRightAngle[size=0.15](U,pzy,z);
 \tkzMarkRightAngle[size=0.15](P,pzy,z);
-\tkzMarkRightAngle[size=0.15](P,U,pzy);
-\tkzMarkRightAngle[size=0.15](yc,xcp,O);
 
 \tdplotdrawarc{(O)}{0.15}{-36}{109}{anchor=north}{\tiny$\varphi$}
-\tdplotdrawarc{(pzx)}{0.15}{-36}{109}{}{}
 \tdplotdrawarc{(pzy)}{0.15}{-36}{109}{}{}
+\tdplotdrawarc{(pzx)}{0.15}{-36}{109}{}{}
 
 \end{tikzpicture}
 \end{document}
