@@ -12,6 +12,11 @@
 \PreviewEnvironment{tikzpicture}
 \setlength\PreviewBorder{2mm}
 
+\usepackage{amsmath}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\col}{col}
+
+
 \begin{document}
 
 %Angle Definitions
@@ -38,7 +43,7 @@
 \draw[->] (O) -- (S) node[anchor=south east]{$x$};
 \draw[->] (O) -- (P) node[anchor=south west]{$y$};
 
-\draw (0.5,0) ellipse (5cm and 2cm) node[anchor=west,right=3.3cm]{\footnotesize$Lin^{\perp}(z)$};
+\draw (0.5,0) ellipse (5cm and 2cm) node[anchor=west,right=3.3cm]{\footnotesize$\Lin^{\perp}(z)$};
 
 \draw[->] (O) -- (yc) node[anchor=north east]{$\tilde y$};
 \draw[->] (O) -- (xc) node[anchor=north west]{$\tilde x$};

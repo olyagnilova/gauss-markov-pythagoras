@@ -12,6 +12,10 @@
 \PreviewEnvironment{tikzpicture}
 \setlength\PreviewBorder{2mm}
 
+\usepackage{amsmath}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\col}{col}
+
 \begin{document}
 
 %Angle Definitions
@@ -29,10 +33,10 @@
 \coordinate (yc) at (-0.9,3);
 \coordinate (un) at (0,0,6);
 
-\tdplotsetcoord{S}{10}{35}{0}  % икс
-\tdplotsetcoord{P}{7}{30}{90} % игрек
-\tdplotsetcoord{T}{6.5}{15}{0} % игрек с крышкой
-\tdplotsetcoord{Z}{4.8}{0}{0}
+\tdplotsetcoord{S}{10}{35}{0}  % x
+\tdplotsetcoord{P}{7}{30}{90} % y
+\tdplotsetcoord{T}{6.5}{15}{0} % \hat y
+\tdplotsetcoord{Z}{4.8}{0}{0} % \hat y projected onto \mathbf{1}
 
 \draw[->] (O) -- (un) node[anchor=east]{$\mathbf{1}$};
 \draw[->] (O) -- (S) node[anchor=south east]{$x$};
@@ -45,19 +49,19 @@
 \tkzMarkRightAngle[size=0.1](T,Z,un);
 \tdplotdrawarc{(Z)}{0.2}{-45}{109}{anchor=north west}{\footnotesize$\varphi '$}
 
-\draw (0,0.5) ellipse (4cm and 1cm) node[anchor=west, right=2.7cm]{\tiny$Lin^{\perp}(\mathbf{1})$};
+\draw (0,0.5) ellipse (4.2cm and 1.2cm) node[anchor=west,right=2.7cm]{\footnotesize$\Lin^{\perp}(\mathbf{1})$};
 
 \draw[dashed] (T) -- (xcp);
 \draw[dashed] (P) -- (yc);
 
-\draw[->] (O) -- (yc) node[anchor=north east]{$y - \bar{y}\cdot\mathbf{1}$};
-\draw[->] (O) -- (xc) node[anchor=north east]{$x - \bar{x}\cdot\mathbf{1}$};
+\draw[->] (O) -- (yc) node[anchor=north]{$y - \bar{y}\cdot\mathbf{1}$};
+\draw[->] (O) -- (xc) node[anchor=north west]{$x - \bar{x}\cdot\mathbf{1}$};
 
-\tdplotdrawarc{(O)}{0.15}{-45}{110}{anchor=north}{\footnotesize$\varphi '$}
+\tdplotdrawarc{(O)}{0.15}{-45}{110}{anchor=north west}{\footnotesize$\varphi '$}
 \tkzMarkRightAngle[size=0.15](T,xcp,O);
 \tkzMarkRightAngle[size=0.15](P,yc,O);
 
-\draw[->] (O) -- (xcp) node[anchor=south east]{\tiny$\hat y - \bar{\hat{y}}\cdot\mathbf{1}$};
+\draw[->] (O) -- (xcp) node[anchor=north]{\footnotesize$\hat y - \bar{\hat{y}}\cdot\mathbf{1}$};
 
 \end{tikzpicture}
 \end{document}

@@ -12,6 +12,10 @@
 \PreviewEnvironment{tikzpicture}
 \setlength\PreviewBorder{2mm}
 
+\usepackage{amsmath}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\col}{col}
+
 \begin{document}
 
 %Angle Definitions
@@ -38,11 +42,11 @@
 \draw[->] (O) -- (un) node[anchor=east]{$\mathbf{1}$};
 \draw[->] (O) -- (S) node[anchor=south east]{$x$};
 \draw[->] (O) -- (P) node[anchor=north west]{$y$};
-\draw[->,blue] (O) -- (T) node[anchor=south east,black]{$\tilde x$};
+\draw[->] (O) -- (T) node[anchor=south east,black]{$\tilde x$};
 
-\draw (0,0.5) ellipse (4cm and 1cm) node[anchor=west, right=2.7cm]{\tiny$Lin^{\perp}(\mathbf{1})$};
+\draw (0,0.5) ellipse (4cm and 1cm) node[anchor=west, right=2.7cm]{\footnotesize$\Lin^{\perp}(\mathbf{1})$};
 
-\draw[dashed,blue] (T) -- (xcp);
+\draw[dashed] (T) -- (xcp);
 \draw[->] (O) -- (yc) node[anchor=north east]{\small $y^c$};
 \draw[->] (O) -- (xc) node[anchor=north east]{\small $x^c$};
 \draw[->] (O) -- (R) node[anchor=north east]{\footnotesize$\beta x$};
@@ -52,13 +56,13 @@
 \draw[dashed] (S) -- (xc);
 
 
-\draw[->,dashed,blue] (O) -- (xcp) node[anchor=north]{\small$\tilde x^c$};
-\tkzMarkRightAngle[size=0.15,color=blue](R,xcp,O);
-\tkzDrawPoint[color=red,fill=red,size=1.8](O);
+\draw[->,dashed] (O) -- (xcp) node[anchor=north]{\small$\tilde x^c$};
+\tkzMarkRightAngle[size=0.15](R,xcp,O);
+\tkzDrawPoint[size=1.8](O);
 
 \tkzMarkRightAngle[size=0.15](P,yc,O);
 \tkzMarkRightAngle[size=0.15](S,xc,O);
-\tdplotdrawarc{(O)}{0.15}{-45}{110}{anchor=north}{\tiny$\varphi$}
+\tdplotdrawarc{(O)}{0.15}{-45}{110}{anchor=north}{\footnotesize$\varphi$}
 
 \end{tikzpicture}
 \end{document}

@@ -12,6 +12,10 @@
 \PreviewEnvironment{tikzpicture}
 \setlength\PreviewBorder{2mm}
 
+\usepackage{amsmath}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\col}{col}
+
 \begin{document}
 \tdplotsetmaincoords{100}{110}
 \begin{tikzpicture}[scale=5,tdplot_main_coords]
@@ -32,7 +36,7 @@
 \draw[dashed] (Y) -- (Yz);
 \draw[dashed] (Y) -- (Yxy);
 
-\draw (0,0.5) ellipse (1.2cm and 0.4cm) node[anchor=west, right=3.2cm]{$colX$};
+\draw (0,0.5) ellipse (1.2cm and 0.4cm) node[anchor=west, right=3.2cm]{$\col X$};
 
 
 \end{tikzpicture}

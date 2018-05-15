@@ -12,6 +12,10 @@
 \PreviewEnvironment{tikzpicture}
 \setlength\PreviewBorder{2mm}
 
+\usepackage{amsmath}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\col}{col}
+
 \begin{document}
 
 %Angle Definitions
@@ -42,10 +46,10 @@
 
 \draw[->] (O) -- (T) node[anchor=west]{$\hat y$};
 
-\draw (0,0.5) ellipse (4cm and 1cm) node[anchor=west, right=2.7cm]{\tiny$Lin^{\perp}(\mathbf{1})$};
+\draw (0,0.5) ellipse (4.2cm and 1.2cm) node[anchor=west, right=2.7cm]{\footnotesize$\Lin^{\perp}(\mathbf{1})$};
 
-\draw[->] (O) -- (yc) node[anchor=north east]{\small $y - \bar{y}\cdot\mathbf{1}$};
-\draw[->] (O) -- (xc) node[anchor=north east]{\small $x - \bar{x}\cdot\mathbf{1}$};
+\draw[->] (O) -- (yc) node[anchor=north]{\small $y - \bar{y}\cdot\mathbf{1}$};
+\draw[->] (O) -- (xc) node[anchor=north west]{\small $x - \bar{x}\cdot\mathbf{1}$};
 \draw[dashed] (O) -- (nxc);
 \draw[dashed] (P) -- (yc);
 \draw[dashed] (S) -- (xc);
@@ -54,8 +58,8 @@
 \tkzMarkRightAngle[size=0.15](P,yc,O);
 \tkzMarkRightAngle[size=0.15](S,xc,O);
 \tkzMarkRightAngle[size=0.15](T,xcp,O);
-\tdplotdrawarc{(O)}{0.15}{-45}{110}{anchor=north}{\tiny$\varphi$}
-\tdplotdrawarc{(O)}{0.25}{109}{135}{anchor=west}{\tiny$180^{\circ} - \varphi$}
+\tdplotdrawarc{(O)}{0.15}{-45}{110}{anchor=north}{\footnotesize$\varphi$}
+\tdplotdrawarc{(O)}{0.55}{107}{136}{anchor=west}{\footnotesize$180^{\circ} - \varphi$}
 
 \end{tikzpicture}
 \end{document}

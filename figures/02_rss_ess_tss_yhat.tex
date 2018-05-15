@@ -17,16 +17,16 @@
 \begin{tikzpicture}[scale=5,tdplot_main_coords]
 
 \coordinate (O) at (0,0,0);
-\coordinate (un) at (1.75,1.5,0);
-\coordinate (x) at (-1.75,0.5,0);
+\coordinate (un) at (1.75,1.5,0); % vector of ones
+\coordinate (x) at (-1.75,0.5,0); % x
 
-\tdplotsetcoord{Y}{1}{50}{90}
+\tdplotsetcoord{Y}{1}{50}{90} % y
 
 \draw[->] (O) -- (un) node[anchor=south west]{$\mathbf{1}$};
 \draw[->] (O) -- (Y) node[anchor=south west]{$y$};
-\draw[->] (O) -- (x) node[anchor=south east]{$x$};
+\draw[->] (O) -- (x) node[anchor=north west]{$x$};
 \draw[->] (O) -- (Yxy) node[anchor=north west]{$\hat y$};
-\draw[dashed] (Y) -- (Yxy);
+\draw[dashed] (Y) -- (Yxy) node[near end, right, black]{\footnotesize$\sqrt{RSS}$};
 \tkzMarkRightAngle[size=0.03](Y,Yxy,O);
 
 \end{tikzpicture}

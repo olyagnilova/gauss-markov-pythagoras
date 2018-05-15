@@ -82,6 +82,8 @@
 \DeclareMathOperator{\E}{E}
 \DeclareMathOperator{\ctg}{ctg}
 \DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\col}{col}
 \renewcommand{\P}{\mathbb{P}}
 \newcommand{\I}{\mathbb{I}} % индикатор события
 \newtheorem{theorem}{Theorem}
@@ -90,16 +92,19 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 
+
+
 \usepackage[bibencoding = auto, backend = biber,
 sorting = none]{biblatex}
-\usepackage{hyphenat}
 
 \addbibresource{references.bib}
+
 
 
 \title{How Gauss and Markov met Pythagoras: geometry in econometrics}
 %\author{}
 %\date{\today}
+\bibliography{references}
 \begin{document}
 
 \maketitle
@@ -123,10 +128,12 @@ sorting = none]{biblatex}
 %\newpage
 %\input{chapters/5_ideas.tex}
 
-%\newpage
-%\printbibliography[ doesn't work
+\newpage
+%\printbibliography[ %doesn't work
 %heading=bibintoc,
 %title={References}
 %]
+
+\printbibliography
 
 \end{document}

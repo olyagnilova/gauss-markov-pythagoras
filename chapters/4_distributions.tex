@@ -14,15 +14,22 @@ In this section we show how to obtain the univariate normal from the bivariate.
   the velocity vector, and its speed along the vertical axis is $v_2$.}
 \end{marginfigure}
 
+The original idea belongs to J.C. Maxwell who was wondering
+what distribution the velocity of gas molecules follow.
+The similar question was also bothering J.H.W. Herschel who was an astronomer
+and was dealing with measurement errors in astronomical data.
+Here we provide a proof of the theorem known today as Herschel-Maxwell's.
+
 Assume there are gas molecules moving chaotically on a plane
 and we can measure the velocity vector of one of them.
-We denote this vector as $V = \begin{pmatrix} X \\ Y \end{pmatrix}$
-where $X$ and $Y$ satnd for the horizontal and vertical components respectively.
+We will denote this vector as $V = \begin{pmatrix} X \\ Y \end{pmatrix}$
+where $X$ and $Y$ stand for the horizontal and vertical components respectively.
 Assume additionally that
 \begin{enumerate}
-  \item the joint distribution finction $f(x,y)$ does not depend on
-  the vector $(X,Y)^T$ direction but depends on its length only,
-  \item the orthogonal components of the velocity vector are independent.
+  \item The joint distribution finction $f(x,y)$ does not depend on
+  the vector $(X,Y)^T$ direction but depends on its length only;
+  \item The orthogonal components of the velocity vector are independent;
+  \item And we measure the velocity in such a way that $\Var(X) = 1$.
 \end{enumerate}
 
 \marginnote{
@@ -35,6 +42,7 @@ f_{\xi} (x) = \frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^2}{2}\right).
 \]
 \end{definition}
 After that multivariate normal is defined.
+
 \begin{definition}
 Let $\xi_i \stackrel{iid}{\sim} \mathcal{N}(0, 1)$ then $\xi \sim \mathcal{N}(\vec{0}, I)$
 where $\xi = \begin{pmatrix} \xi_1 \\ \vdots \\ \xi_n \end{pmatrix}$,
@@ -47,7 +55,7 @@ And finally, location-scale transformations are applied.
 }
 
 \begin{theorem}
-The only way the assumptions (1) and (2) are satisfied is when
+Assumptions (1) and (2) are satisfied if and only if
 $X \sim \mathcal{N}(0, \sigma^2)$, $Y \sim \mathcal{N}(0, \sigma^2)$
 and $X$, $Y$ are independent.
 \end{theorem}
@@ -65,9 +73,10 @@ It follows that
 \end{cases}
 \]
 which holds for $\E(X) = \E(Y) = 0$ only.
+However, we have to notice that $\E(X)$ may not exist at all.
 
-Likewise, $\Var(X) = \Var(Y)$ and here we additionally assume
-without loss of generality that $\Var(X) = \Var(Y) = 1$.
+Likewise, $\Var(X) = \Var(Y)$ and it follows from the assumption (3)
+that $\Var(X) = \Var(Y) = 1$.
 
 Next, we introduce the angle between $V$ and the horizontal axis $U$ and
 the length of the velocity vector $R = \sqrt{X^2 + Y^2}$.
@@ -134,7 +143,7 @@ In order to obtain $c$ we computed:
 \end{align*}
 }
 
-In oreder to find the constant $k$, we need to solve $\E(X^2) = 1$.
+In order to find the constant $k$, we need to solve $\E(X^2) = 1$.
 Computing the integral we obtain $k=-\frac{1}{2}$.
 
 Finally, we need to normalize $f(x) = c e^{-\frac{x^2 + y^2}{2}}$ so as to
@@ -148,7 +157,7 @@ location-scale transformations.
 The theorem can be generalized to the n-dimensional case.
 \begin{theorem}\label{th:mvn}
 The vector $z = \begin{pmatrix} z_1 \\ \vdots \\ z_n \end{pmatrix}$
-folllows the standard multivariate normal distribution and its components
+follows the standard multivariate normal distribution and its components
 are independent if and only if
 \begin{enumerate}
   \item f(z) depends on $\vert z \vert$ only,
@@ -161,12 +170,14 @@ are independent if and only if
 \subsection{Chi-squared}
 
 \marginnote{
+\begin{definition}\label{def:chi_traditional}
 Let $z_i \stackrel{iid}{\sim} \mathcal{N}(0,1)$.
 Then $Q$ follows the chi-squared distribution with $k$ degrees of freedom
 if it can be written as
 \[
 Q = z_1^2 + z_2^2 + \ldots + z_k^2.
 \]
+\end{definition}
 
 This definition is a particular case of the geometric one.
 Consider projecting a vector $z = (z_1, z_2, \ldots, z_n)$ form $\mathbb{R}^n$
@@ -181,23 +192,27 @@ Q = \lVert \hat z \rVert = z_1^2 + z_2^2 + \ldots + z_k^2.
 \]
 }
 
-\begin{theorem}\label{th:chi}
+\begin{definition}\label{th:chi}
 Consider a random vector $z \in \mathbb{R}^n$ which components are independent
 and follow standard normal distribution, $z_i \sim \mathcal{N}(0,1)$.
-Consider also a fixed $k$-dimensional subspace $L$ in $\mathbb{R}^n$.
+Consider also a $k$-dimensional subspace $L$ in $\mathbb{R}^n$.
 Let the projection of vector $z$ onto the subspace $L$ be $\hat z$ and
 its length squared $Q$
 \[
 Q = \lVert \hat z \rVert^2 = \langle \hat z, \hat z \rangle = \hat z^T \hat z
 \]
 Then $Q$ follows the chi-squared distribution with $k$ degrees of freedom.
+\end{definition}
+
+\begin{theorem}
+The definitions~\ref{def:chi_traditional} and \ref{th:chi} are equivalent.
 \end{theorem}
 
 \begin{proof}
 First, it can be shown that the~projected vector $\hat z$ is the~original vector $z$
 multiplied by the~projection matrix $H = X(X^T X)^{-1}X^T$ where the columns of $X$
 are fixed linearly independent vectors $x_1, \ldots, x_k$ in $L$
-or equivalently $colX = Lin(x_1, \ldots, x_k)$.
+or equivalently $\col X = \Lin(x_1, \ldots, x_k)$.
 This matrix is  also often referred to as `hat-matrix'.
 Then the statement in~the~theorem can be rewritten as follows:
 \[
@@ -215,21 +230,21 @@ and $D = diag{(\lambda_1, \ldots, \lambda_n)}$ where $\lambda_i$ is an eigenvalu
 
 \begin{marginfigure}
   \includegraphics[width=\linewidth]{figures/04_chi_squared_example.pdf}
-  \caption{Consider a $3$-dimensional example, $colX = Lin(x_1, x_2)$ and $col^{\perp}X = Lin(x_3)$.
-  $H x_1 = x_1$ and $H x_2 = x_2$ since they are in $colX$. However, $H x_3 = 0$ as $x_3 \perp colX$.
-  Projecting an arbitrary vector onto $colX$ yileds $Hy = \hat y \in Lin(x_1, x_2)$
-  while projecting onto $col^{\perp}X$ results in $(I-H)y = \hat{\hat y} \in Lin(x_3)$.}
+  \caption{Consider a $3$-dimensional example, $\col X = \Lin(x_1, x_2)$ and $col^{\perp}X = \Lin(x_3)$.
+  $H x_1 = x_1$ and $H x_2 = x_2$ since they are in $\col X$. However, $H x_3 = 0$ as $x_3 \perp \col X$.
+  Projecting an arbitrary vector onto $\col X$ yileds $Hy = \hat y \in \Lin(x_1, x_2)$
+  while projecting onto $col^{\perp}X$ results in $(I-H)y = \hat{\hat y} \in \Lin(x_3)$.}
 \end{marginfigure}
 
 Since $H^2 = H$ the eigenvalues are either $0$ or $1$.
-Recall that $H$ projects a vector onto $colX$.
+Recall that $H$ projects a vector onto $\col X$.
 Then for any $x_i$, $i = 1, \ldots, k$, $H x_i = x_i \cdot 1$ since
-any $x_i$ is already in $colX$. This implies that $\lambda_1 = \ldots = \lambda_k = 1$.
-There are also $n-k$ vectors in the subspace orthogonal to $colX$.
+any $x_i$ is already in $\col X$. This implies that $\lambda_1 = \ldots = \lambda_k = 1$.
+There are also $n-k$ vectors in the subspace orthogonal to $\col X$.
 So for any $x_i$, $i= k+1, \ldots, n$, the orthogonal projection yields zero.
 We conclude that $\lambda_{k+1} = \ldots = \lambda_n = 0$.
 
-Rewritting the theroem statement further, we obtain
+Rewritting the theorem statement further, we obtain
 \[
 z^T H z = z^T P D P^T z = (P^T z)^T D (P^T z) = \tilde z^T D \tilde z = \tilde z_1^2 + \ldots + \tilde z_k^2.
 \]
@@ -257,16 +272,17 @@ $Z$, $\gamma_k$ are independent.
 }
 
 \begin{definition}
-Let  $z = \begin{pmatrix} z_0 \\ z_1 \\ \vdots \\ z_k \end{pmatrix}$
-where $z_i \sim \mathcal{N}(0, \sigma^2), i=0, \ldots, k$ and are independent.
-Let $L_1$ be 1-dimensional subspace in $\mathbb{R}^{k+1}$, $L_2$ an orthogonal to $L_1$ subspace.
+Let  $z = \begin{pmatrix} z_1 \\ \vdots \\ z_n \end{pmatrix}$
+where $z_i \sim \mathcal{N}(0, \sigma^2), i=1, \ldots, n$ and are independent.
+Let $L_1$ be 1-dimensional subspace in $\mathbb{R}^{n}$, $L_2$ an orthogonal to $L_1$ subspace.
 Then
 \[
-T = \frac{\langle z, a \rangle}{\lVert H_2 z \rVert / \sqrt{dim L_2}}
+T = \frac{\lVert H_1 z \rVert}{\lVert H_2 z \rVert / \sqrt{\dim L_2}}
 \]
-where $a$ is a unit vector,
+where $\lVert H_1 z \rVert$ is the length of the projection of vector $z$ onto
+1-dimensional subspace $L_1$,
 $\lVert H_2 z \rVert$ — the length of the projection onto $L_2$,
-follows Student's distribution with $dim L_2$ degrees of freedom.
+follows Student's distribution with $\dim L_2$ degrees of freedom.
 \end{definition}
 
 Let us choose two orthogonal subspaces: one-dimensional $L_1$ and
@@ -274,17 +290,17 @@ $k$-dimensional $L_2$.
 
 Previously we showed that, the squared length of projection follows
 the chi-squared distribution with the degrees of freedom equal to the dimension
-onto which the vector was projected. Thus, $\langle z, a \rangle^2 \sim \chi^2_1$
+onto which the vector was projected. Thus, $\lVert H_1 z \rVert^2 \sim \chi^2_1$
 and $\lVert H_2 z \rVert^2 \sim \chi^2_{k}$.
 Now we can express $T^2$ as a ratio of the per-dimension lengths squared:
 \[
-T^2 = \frac{\langle z, a \rangle^2}{\lVert H_2 z \rVert^2 / dim L_2}
+T^2 = \frac{\lVert H_1 z \rVert^2}{\lVert H_2 z \rVert^2 / \dim L_2}
 \]
 Taking the square root of both sides, we obtain:
 \[
-T = \frac{\langle z, a \rangle}{\lVert H_2 z \rVert / \sqrt{dim L_2}} = \tg \varphi
+T = \frac{\lVert H_1 z \rVert}{\lVert H_2 z \rVert / \sqrt{\dim L_2}} = \tg \varphi
 \]
-The latter equlity can be illustarted with a $3$-dimensional example (see Figure~\ref{fig:f_dist}).
+The latter equality can be illustarted with a $3$-dimensional example (see Figure~\ref{fig:f_dist}).
 
 
 
@@ -297,21 +313,21 @@ In a simple linear regression model
 y = \beta_1 + \beta_2 x + \varepsilon
 \]
 the adjusted t-value $\frac{t}{\sqrt{n-2}}$ when $H_0: \beta_2 = 0$ is tested
-can be expreesed in terms of the angle between $y$ and $\hat y$ $\varphi$ and
+can be expressed in terms of the angle between $y$ and $\hat y$ $\varphi$ and
 is equal to $\ctg \varphi$.
 
 Recall that the t-statistic is defined in the following way:
 \[
-t = \frac{\hat \beta - \beta}{s.e.(\hat\beta)}
+t = \frac{\hat \beta - \beta}{se\left(\hat\beta\right)}
 \]
 Adjusting this formula for the null hypothesis $H_0: \beta_2 = 0$, we obtain
 \begin{equation}\label{eq:tstat}
-t = \frac{\hat \beta_2}{s.e.(\hat\beta_2)}
+t = \frac{\hat \beta_2}{se\left(\hat\beta_2\right)}
 \end{equation}
-Then, we need to express $s.e.(\hat\beta_2)$ in terms of vectors which can be
+Then, we need to express $se\left(\hat\beta_2\right)$ in terms of vectors which can be
 plotted. From standard OLS procedure it follows that
 \begin{equation}\label{eq:varbeta2}
-\Var(\hat \beta_2) = \frac{\sigma}{\sum\limits_{i=1}^n (x_i - \bar x)^2}
+\Var(\hat \beta_2) = \frac{\sigma^2}{\sum\limits_{i=1}^n (x_i - \bar x)^2}
 \end{equation}
 Since actual $\sigma$ is unknown the estimator will be used instead:
 \begin{equation}\label{eq:sigmaest}
@@ -320,22 +336,22 @@ Since actual $\sigma$ is unknown the estimator will be used instead:
 Substituting \eqref{eq:varbeta2} and \eqref{eq:sigmaest} into \eqref{eq:tstat}
 divided by $\sqrt{n-2}$, we obtain
 \begin{align*}
-\frac{t}{\sqrt{n-2}} &= \frac{\hat \beta_2}{\sqrt{n-2}\widehat{s.e.}(\hat\beta_2)} = \frac{\hat \beta_2}{\sqrt{n-2}\frac{\hat \sigma}{\sqrt{\sum\limits_{i=1}^n (x_i - \bar x)^2}}} \\
+\frac{t}{\sqrt{n-2}} &= \frac{\hat \beta_2}{\sqrt{n-2}se\left(\hat\beta_2\right)} = \frac{\hat \beta_2}{\sqrt{n-2}\frac{\hat \sigma}{\sqrt{\sum\limits_{i=1}^n (x_i - \bar x)^2}}} \\
 &= \frac{\hat \beta_2 \sqrt{\sum\limits_{i=1}^n (x_i - \bar x)^2}}{\sqrt{n-2}\frac{\sqrt{\sum\limits_{i=1}^n (y_i - \hat y_i)^2}}{\sqrt{n-2}}} = \frac{\hat \beta_2 \vert x^c \vert}{\sqrt{RSS}}
 \end{align*}
 where $ \vert x^c \vert = \sqrt{\sum_{i=1}^n (x_i - \bar x)^2}$ is the length of the
 centred vector $x$.
 
 Now the result can be demonstrated visually.
-Again we will project $x$ and $y$ vectors onto the $Lin^{\perp}(\mathbf{1})$ so as to
+Again we will project $x$ and $y$ vectors onto the $\Lin^{\perp}(\mathbf{1})$ so as to
 get their centred versions $x^c$ and $y^c$.
-Then, we perform regression of $y$ onto $Lin(x, \mathbf{1})$ which results in $\hat y$.
-Following that, we project $\hat y = \hat \beta_1 + \hat \beta_2 x$ onto $Lin^{\perp}(\mathbf{1})$
+Then, we perform regression of $y$ onto $\Lin(x, \mathbf{1})$ which results in $\hat y$.
+Following that, we project $\hat y = \hat \beta_1 + \hat \beta_2 x$ onto $\Lin^{\perp}(\mathbf{1})$
 which yields $\hat \beta_2 x^c$.
-After all, we translate $\sqrt{RSS}$ onto $Lin^{\perp}(\mathbf{1})$.
+After all, we translate $\sqrt{RSS}$ onto $\Lin^{\perp}(\mathbf{1})$.
 These steps are demonstrated in Figure~\ref{fig:ttest_3d}.
 
-Looking at Figure~\ref{fig:ttest_lin} which depicts the $Lin^{\perp}(\mathbf{1})$,
+Looking at Figure~\ref{fig:ttest_lin} which depicts the $\Lin^{\perp}(\mathbf{1})$,
 we derive
 \[
 \ctg \varphi = \frac{\hat \beta_2 \vert x^c \vert}{\sqrt{RSS}} = t
@@ -350,8 +366,8 @@ we derive
 \subfigure[]{
 \includegraphics[width=0.45\linewidth]{figures/04_ttest_lin.pdf}
 \label{fig:ttest_lin}}
-\caption{\subref{fig:pcorr_t_x}: Regression of $y$ onto $Lin(x, \mathbf{1})$ and appropriate projections;
-\subref{fig:pcorr_t_y}: $Lin^{\perp}(\mathbf{1})$.}
+\caption{\subref{fig:pcorr_t_x}: Regression of $y$ onto $\Lin(x, \mathbf{1})$ and appropriate projections;
+\subref{fig:pcorr_t_y}: $\Lin^{\perp}(\mathbf{1})$.}
 \end{center}
 \end{figure}
 
@@ -376,7 +392,7 @@ where $z_i \sim \mathcal{N}(0, \sigma^2)$ and are independent.
 Let $L_1$, $L_2$ be orthogonal subspaces in $\mathbb{R}^n$.
 then
 \[
-F = \frac{\lVert H_1 z \rVert^2 / dim L_1}{\lVert H_2 z \rVert^2 / dim L_2} \sim F_{dim L_1, dim L_2},
+F = \frac{\lVert H_1 z \rVert^2 / \dim L_1}{\lVert H_2 z \rVert^2 / \dim L_2} \sim F_{\dim L_1, \dim L_2},
 \]
 where $\lVert H_1 z \rVert^2$, $\lVert H_2 z \rVert^2$ are the squared lengths
 of $z$ projected onto $L_1$ and $L_2$ respectively.
@@ -385,12 +401,12 @@ of $z$ projected onto $L_1$ and $L_2$ respectively.
 Recall that by Theorem~\ref{th:mvn} the projections of a standard noraml vector
 onto orthogonal subspaces are independent.
 Thus, in terms of the Definition~\ref{def:f} $H_1 z$ and $H_2 z$ are independent.
-Next, from the Theorem~\ref{th:chi} where we defined the chi-squared distribution
+Next, from the Definition~\ref{th:chi} where we defined the chi-squared distribution
 it follows that the squared lengths of these projections follow
 the chi-squared distribution with the number of degrees of freedom
 equal to the dimension of the subspace onto which the vector was projected.
-In other words, $\lVert H_1 z \rVert^2 \sim \chi^2_{dim L_1}$,
-$\lVert H_2 z \rVert^2 \sim \chi^2_{dim L_2}$.
+In other words, $\lVert H_1 z \rVert^2 \sim \chi^2_{\dim L_1}$,
+$\lVert H_2 z \rVert^2 \sim \chi^2_{\dim L_2}$.
 
 \begin{marginfigure}
 \includegraphics[scale=0.7]{figures/04_f_dist_example.pdf}
@@ -418,6 +434,14 @@ where indices $R$ and $UR$ stand for the restricted and unrestricted models
 respectively, $n$ — number of observations, $k$ — number of regressors,
 $q$ — number of equtions used in the null hypothesis.
 
+\begin{marginfigure}
+\includegraphics[scale=0.55]{figures/04_ftest.pdf}
+\caption{F-statistic as the cotangent squared of $\varphi$
+where $a$ stands for $\sqrt{RSS_{UR}}$, $b$ — $\sqrt{RSS_{R} -RSS_{UR}}$,
+$c$ — $\sqrt{RSS_{R}}$.}
+\label{fig:ftest}
+\end{marginfigure}
+
 Due to plotting limitations, we consider the unrestricted model to be
 \[
 y = \beta_1 + \beta_2 x + u
@@ -428,11 +452,6 @@ y = \alpha_1 + v
 \]
 Note that there was a choice in the restricted models.
 
-\begin{marginfigure}
-\includegraphics[scale=0.55]{figures/04_ftest.pdf}
-\caption{F-statistic as the cotangens squared of $\varphi$}
-\label{fig:ftest}
-\end{marginfigure}
 
 We perform both regressions in order to get the ressiduals and plot them
 in Figure~\ref{fig:ftest}.

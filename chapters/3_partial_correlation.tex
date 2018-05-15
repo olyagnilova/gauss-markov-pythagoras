@@ -23,12 +23,12 @@ $Z$ and the~residuals in regression of $Y$ onto $Z$.
 \end{definition}
 
 Firstly, we project random variable $X$ onto $Z$, which yields $\E(X \vert Z)$.
-The residuals in this regression are $X - \E(X \vert Z)$ — a vector in $Lin^{\perp}(Z)$.
+The residuals in this regression are $X - \E(X \vert Z)$ — a vector in $\Lin^{\perp}(Z)$.
 We will call this variable `cleansed' and label it as $\widetilde X$.
-Applying the same procedure for $Y$ yields `cleansed' variable $\tilde Y = Y - \E(Y \vert Z) \in Lin^{\perp}(Z)$.
+Applying the same procedure for $Y$ yields `cleansed' variable $\tilde Y = Y - \E(Y \vert Z) \in \Lin^{\perp}(Z)$.
 The~angle between $\widetilde X$ and $\widetilde Y$ ($\varphi$ in Figure~\ref{fig:pcorr_def1})
-is the~correaletion coefficient between these `cleansed' random variables and
-the~partial correlaiton between the~original ones.
+is the~correlation coefficient between these `cleansed' random variables and
+the~partial correlation between the~original ones.
 
 \begin{figure}
 \centering
@@ -58,7 +58,7 @@ Note, that $\alpha_{XY}$ and $\alpha_{XY}$ are of the~same sign.
 }
 
 \begin{definition}
-Partial correlaiton between random variables $X$ and $Y$ holding random variable $Z$
+Partial correlation between random variables $X$ and $Y$ holding random variable $Z$
 fixed is the~geometric mean between the coefficient $\beta_{XY}$ in regression
 \[
 X = \beta_{XY} Y + \beta_{XZ} Z + u_X
@@ -73,9 +73,9 @@ Partial correlation has the same sign as the~coefficients $\beta_{XY}$ and $\bet
 Following the~definition, we need to start with regressing variable $X$ onto
 $Y$ and $Z$. Then, the vector we obtain $\hat X = \E(X \vert Y, Z)$
 can be broken up into the sum of $\beta_{XY} Y$ and $\beta_{XZ} Z$.
-Projecting $\beta_{XY} Y$ onto $Lin^{\perp}(Z)$ results in a~vector
+Projecting $\beta_{XY} Y$ onto $\Lin^{\perp}(Z)$ results in a~vector
 $\alpha_{XY} \widetilde Y$ where $\widetilde Y = Y - \E(Y \vert Z)$
-is the projection of $Y$ onto $Lin^{\perp}(Z)$.
+is the projection of $Y$ onto $\Lin^{\perp}(Z)$.
 
 \marginnote{
 Multiplying these coefficients, we get the final result:
@@ -102,11 +102,11 @@ same steps for $X$. Finally, we get the whole picture:
 \includegraphics[width=0.35\linewidth]{figures/03_partial_correlation_regression_definition_lin.pdf}
 \label{fig:part_corr_alt_lin}}
 \caption{\subref{fig:part_corr_alt}: Alternative definition of the partial correlation;
-\subref{fig:part_corr_alt_lin}: $Lin^{\perp}(Z)$.}
+\subref{fig:part_corr_alt_lin}: $\Lin^{\perp}(Z)$.}
 \end{center}
 \end{figure}
 
-Having plotted $Lin^{\perp}(Z)$, now we can express $\cos \varphi$ in terms of $\beta_{XY}$
+Having plotted $\Lin^{\perp}(Z)$, now we can express $\cos \varphi$ in terms of $\beta_{XY}$
 and $\beta_{YX}$:
 
 \begin{equation*}%\label{eq:part_cor_cos}
@@ -125,7 +125,7 @@ are uncorrelated with $Z$. Thus, it follows that
 \cos^2 \varphi = \Corr^2(\widetilde X, \widetilde Y) = \pCorr^2(X,Y; Z) = \beta_{XY} \beta_{YX}
 \]
 
-\subsection{Partial correlation as correlaiton between residuals}
+\subsection{Partial correlation as correlation between residuals}
 
 \marginnote{
 Let us define cleansed $X$ and $Y$ first as
@@ -143,8 +143,8 @@ Then
 
 
 \begin{theorem}
-Partial correlaiton between $X$ and $Y$ holding $Z$ fixed is the negative
-correlaiton coefficient betwenn the residuals $u$ in the regeression model
+Partial correlation between $X$ and $Y$ holding $Z$ fixed is the negative
+correlation coefficient between the residuals $u$ in the regression model
 \[
 X = \alpha_1 Y + \alpha_2 Z + u
 \]
@@ -155,15 +155,17 @@ Y = \beta_1 X + \beta_2 Z + v
 \end{theorem}
 
 \begin{proof}
-The first step is to find the residuals in the mentioned regresisions.
-For example, in order to get $u$ we regress $X$ onto $Lin(Y,Z)$
+The first step is to find the residuals in the mentioned regressions.
+For example, in order to get $u$ we regress $X$ onto $\Lin(Y,Z)$
 which results in $\hat X = X - \E(X \vert Y, Z)$.
 Then we take the difference $X - \hat X = u$
-and project it as well as $X$ itself onto $Lin^{\perp}(Z)$ as demonstrated
+and project it as well as $X$ itself onto $\Lin^{\perp}(Z)$ as demonstrated
 in Figure~\ref{fig:pcorr_t_x}.
 We denote the result as $\tilde u$ and $\widetilde X$ respectively.
 
-\marginnote{
+Figure~\ref{fig:pcorr_t_y} shows the same steps for obtainig $\tilde v$ and $\widetilde Y$.
+
+\marginnote[-6\baselineskip]{
 Substituting these into $\Cov(\tilde{u}, \tilde{v})$, we obtain:
 \begin{align*}
 &\Cov(\tilde{u}, \tilde{v}) = \\
@@ -175,7 +177,7 @@ Substituting these into $\Cov(\tilde{u}, \tilde{v})$, we obtain:
 \end{align*}
 Next, we deal with variances of $\tilde{u}$ and $\tilde{v}$:
 \begin{align*}
-&\Var(\tilde{u}) = \Var(\widetilde{X}) - \frac{\Cov^2(\widetilde{X}, \widetilde{Y})}{\Var^2(\widetilde{Y})} \Var(\widetilde{Y}) \\
+\Var(\tilde{u}) &= \Var(\widetilde{X}) - \frac{\Cov^2(\widetilde{X}, \widetilde{Y})}{\Var^2(\widetilde{Y})} \Var(\widetilde{Y}) \\
 &- 2 \Cov(\widetilde{X}, \widetilde{Y}) \frac{\Cov(\widetilde{X}, \widetilde{Y})}{\Var(\widetilde{Y})} \\
 &= \Var(\widetilde{X}) \left(1 - \frac{\Cov^2(\widetilde{X}, \widetilde{Y}}{\Var(\widetilde{X}) \Var(\widetilde{Y})}\right) \\
 &\Var(\tilde{v}) = \Var(\widetilde{Y}) \left(1 - \frac{\Cov^2(\widetilde{X}, \widetilde{Y}}{\Var(\widetilde{X}) \Var(\widetilde{Y})}\right)
@@ -188,8 +190,6 @@ Now we can write out $\Corr(\tilde{u}, \tilde{v})$:
 \end{align*}
 }
 
-Figure~\ref{fig:pcorr_t_y} shows the same steps for obtainig $\tilde v$ and $\widetilde Y$.
-
 \begin{figure}[ht!]
 \begin{center}
 \subfigure[]{
@@ -200,10 +200,8 @@ Figure~\ref{fig:pcorr_t_y} shows the same steps for obtainig $\tilde v$ and $\wi
 \label{fig:pcorr_t_y}}
 \caption{\subref{fig:pcorr_t_x}: $\hat u$ form regression of x onto $Y$ and $Z$, $\hat u$ projected;
 \subref{fig:pcorr_t_y}: $\hat v$ from regression of $Y$ onto $X$ and $Z$, $\hat v$ projected.}
-\setfloatalignment{b}
 \end{center}
 \end{figure}
-
 
 
 After putting these figures together, we need to measure the angle
@@ -211,10 +209,10 @@ between the $\tilde u$ and $\tilde v$.
 Translating the $\tilde v$ vector to the orgin of $\tilde x$ as shown in Figure~\ref{fig:pcorr_t_lin},
 we conclude that the desired angle is the bigger one of the vertical angles.
 Hence, we can derive it from the property of quadrilateral
-by substracrtion all the known angles from $360^\circ$.
+by substraction all the known angles from $360^\circ$.
 Thus, the desired one is equal to $180^\circ - \varphi$.
 \begin{align*}
-\cos(\varphi) &= - \cos(180^\circ - \varphi) \\
+\cos\varphi &= - \cos(180^\circ - \varphi) \\
 \Corr(\widetilde X, \widetilde Y) &= -\Corr(\tilde u, \tilde v) \\
 \pCorr(X,Y; Z) &= -\Corr(u, v)
 \end{align*}
@@ -229,7 +227,7 @@ Thus, the desired one is equal to $180^\circ - \varphi$.
 \includegraphics[width=0.45\linewidth]{figures/03_partial_correlation_residuals_xy_lin.pdf}
 \label{fig:pcorr_t_lin}}
 \caption{\subref{fig:pcorr_t_x}: The residuals of both regressions;
-\subref{fig:pcorr_t_y}: $Lin^{\perp}(Z)$.}
+\subref{fig:pcorr_t_y}: $\Lin^{\perp}(Z)$.}
 \setfloatalignment{b}
 \end{center}
 \end{figure}

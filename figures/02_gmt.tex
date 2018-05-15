@@ -12,6 +12,10 @@
 \PreviewEnvironment{tikzpicture}
 \setlength\PreviewBorder{2mm}
 
+\usepackage{amsmath}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\col}{col}
+
 \begin{document}
 \tdplotsetmaincoords{100}{110}
 \begin{tikzpicture}[scale=5,tdplot_main_coords]
@@ -25,7 +29,7 @@
 \tdplotsetcoord{Y}{1}{50}{90}
 \tdplotsetcoord{A}{0.9}{63}{90}
 
-\draw (0.2,0.55) ellipse (0.7cm and 0.25cm) node[anchor=west, right=2cm]{\footnotesize$Lin(colX)$};
+\draw (0.2,0.55) ellipse (0.7cm and 0.25cm) node[anchor=west, right=2cm]{\footnotesize$\Lin(\col X)$};
 
 \draw[->] (O) -- (un) node[anchor=west]{$a^{(1)}$};
 \draw[->] (O) -- (Y) node[anchor=south west]{$y$};

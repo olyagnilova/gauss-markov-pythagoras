@@ -1,0 +1,42 @@
+\documentclass{article}
+%%%<
+\usepackage{verbatim}
+%%%>
+
+\usepackage{tikz}   %TikZ is required for this to work.  Make sure this exists before the next line
+
+\usepackage{tikz-3dplot} %requires 3dplot.sty to be in same directory, or in your LaTeX installation
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage[active,tightpage]{preview}  %generates a tightly fitting border around the work
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{2mm}
+
+\begin{document}
+\begin{tikzpicture}[scale=1.2]
+
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(1,2){x1}
+\tkzDefPoint(4,0){x2}
+\tkzDefPoint(2,4){bx1}
+\tkzDefPoint(3,0){bx2}
+\tkzDefPoint(5,4){y}
+
+\draw[->] (O) -- (x1) node[anchor=east]{$\langle X, x_1 \rangle$};
+\draw[->] (O) -- (bx1) node[anchor=east]{$\langle X, \hat \beta_1 x_1 \rangle$};
+\draw[->] (O) -- (x2) node[anchor=north]{$\langle X, x_2 \rangle$};
+\draw[->] (O) -- (bx2) node[anchor=north]{$\langle X, \hat \beta_2 x_2 \rangle$};
+
+\draw[dashed] (x1) -- (5,2);
+\draw[dashed] (x2) -- (5,2);
+
+\draw[->] (O) -- (y) node[anchor=south]{$\langle X, y \rangle$};
+
+\draw[dashed] (bx2) -- (8,4);
+\draw[dashed] (8,4) -- (y);
+
+\fill[pattern=horizontal lines, opacity=0.5] (O) -- (x1) -- (5,2) -- (x2);
+\fill[pattern = dots, opacity=0.5] (O) -- (y) -- (8,4) -- (bx2);
+
+\end{tikzpicture}
+\end{document}

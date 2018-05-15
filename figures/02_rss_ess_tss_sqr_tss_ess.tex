@@ -17,18 +17,23 @@
 \begin{tikzpicture}[scale=5,tdplot_main_coords]
 
 \coordinate (O) at (0,0,0);
-\coordinate (un) at (1.75,1.5,0);
-\coordinate (x) at (-1.75,0.5,0);
-\coordinate (pun) at (0.7,0.6,0);
+\coordinate (un) at (1.75,1.5,0); % vector of concepts
+\coordinate (x) at (-1.75,0.5,0); % x
+\coordinate (pun) at (0.7,0.6,0); % \bar y
 
 \tdplotsetcoord{Y}{1}{50}{90}
 
 \draw[->] (O) -- (un) node[anchor=south west]{$\mathbf{1}$};
 \draw[->] (O) -- (Y) node[anchor=south west]{$y$};
-\draw[->] (O) -- (x) node[anchor=south east]{$x$};
+\draw[->] (O) -- (x) node[anchor=north west]{$x$};
 \draw[->] (O) -- (Yxy) node[anchor=north west]{$\hat y$};
-\draw[->, blue] (pun) -- (Y) node[midway, right, black]{\footnotesize$\sqrt{TSS}$};
-\tkzMarkRightAngle[size=0.03](Y,pun,O);
+
+\draw[dashed] (pun) -- (Y) node[midway, right, black]{\footnotesize$\sqrt{TSS}$};
+\draw[->] (O) -- (pun) node[below]{$\bar y$};
+\tkzMarkRightAngle[size=0.04](Y,pun,un);
+
+\draw[dashed] (pun) -- (Yxy) node[midway, right, above, black]{\footnotesize$\sqrt{ESS}$};
+\tkzMarkRightAngle[size=0.04](un,pun,Yxy);
 
 \end{tikzpicture}
 \end{document}

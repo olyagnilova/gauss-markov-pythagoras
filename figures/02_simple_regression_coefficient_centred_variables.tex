@@ -12,6 +12,10 @@
 \PreviewEnvironment{tikzpicture}
 \setlength\PreviewBorder{2mm}
 
+\usepackage{amsmath}
+\DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\col}{col}
+
 \begin{document}
 
 %Angle Definitions
@@ -38,10 +42,10 @@
 
 \draw[->] (O) -- (T) node[anchor=north east]{$\hat y$};
 
-\draw (0,0.5) ellipse (4cm and 1cm) node[anchor=west, right=2.7cm]{\tiny$Lin^{\perp}(\mathbf{1})$};
+\draw (0,0.5) ellipse (4.2cm and 1.2cm) node[anchor=west, right=2.7cm]{\footnotesize$\Lin^{\perp}(\mathbf{1})$};
 
-\draw[->] (O) -- (yc) node[anchor=north east]{$y - \bar{y}\cdot\mathbf{1}$};
-\draw[->] (O) -- (xc) node[anchor=north east]{$x - \bar{x}\cdot\mathbf{1}$};
+\draw[->] (O) -- (yc) node[anchor=north]{$y - \bar{y}\cdot\mathbf{1}$};
+\draw[->] (O) -- (xc) node[anchor=north west]{$x - \bar{x}\cdot\mathbf{1}$};
 \draw[dashed] (P) -- (yc);
 \draw[dashed] (S) -- (xc);
 

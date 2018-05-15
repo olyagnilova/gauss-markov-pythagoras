@@ -15,7 +15,7 @@ all the theorems is also the same.
 \end{multline*}
 }
 
-In the~same manner which was performed in Section~\ref{rvs}, we define
+In the~same manner it was done in the previous section, we define
 the~scalar product of two sample variables
 $x =
 \begin{pmatrix}
@@ -72,9 +72,9 @@ with the~most similar vector proportional to $x$.
 
 \marginnote{
 \begin{align*}
-\sCorr(x + \alpha \mathbf{1}, y) &= \frac{\sCov(x + \alpha \mathbf{1}, y)}{\sVar(x + \alpha \mathbf{1}) \sVar(y)} \\
-&= \frac{\sCov(x,y)\sCov(\alpha \mathbf{1},y)}{\sVar(x)\sVar(y)} \\
-&= \frac{\sCov(x,y)}{\sVar(x)\sVar(y)} \\
+\sCorr(x + \alpha \mathbf{1}, y) &= \frac{\sCov(x + \alpha \mathbf{1}, y)}{\sqrt{\sVar(x + \alpha \mathbf{1}) \sVar(y)}} \\
+&= \frac{\sCov(x,y) + \sCov(\alpha \mathbf{1},y)}{\sqrt{\sVar(x)\sVar(y)}} \\
+&= \frac{\sCov(x,y)}{\sqrt{\sVar(x)\sVar(y)}} \\
 &= \sCorr(x,y)
 \end{align*}
 }
@@ -88,7 +88,7 @@ where $\alpha \in \mathbb{R}$.
 \end{theorem}
 
 \begin{proof}
-Firstly, we project vectors $x$ and $y$ onto $Lin^{\perp}(\mathbf{1})$
+Firstly, we project vectors $x$ and $y$ onto $\Lin^{\perp}(\mathbf{1})$
 in order to get $x^c = x - \bar x$ and $y^c = y - \bar y$ (`c' stands for `centred').
 It can be shown that the~matrix corresponding to projecting onto the line spanned by
 a~vector of all ones has the~following form
@@ -111,53 +111,33 @@ Then we need to derive a new vector $\tilde x$ with constants added to each comp
 Geometrically adding a vector of costants means adding a vector of all ones
 scaled by $\alpha \in \mathbb{R}$, i.e., $\alpha \mathbf{1}$.
 Then the new vector $\tilde x$ can be broken up into a sum of $\alpha \mathbf{1}$ and
-$\beta x$, $\alpha, \beta \in \mathbb{R}$, which can be seen in Figure~\ref{fig:corr_tildex}.
-After that we will project this new vector $\tilde x$ onto $Lin^{\perp}(\mathbf{1})$.
+$\beta x$, $\alpha, \beta \in \mathbb{R}$, which can be seen in Figure~\ref{fig:corr_final}.
+After that we will project this new vector $\tilde x$ onto $\Lin^{\perp}(\mathbf{1})$.
 By the properties of projection it is of no difference whether to project
 the whole vector $\tilde x$ or project its parts $\alpha \mathbf{1}$
 and $\beta x$ — the result is the same.
 So, while $\beta x$ is projected onto the span of $x^c$, the projection of $\alpha \mathbf{1}$
-onto the orthohgonal space $Lin^{\perp}(\mathbf{1})$ yields zero as demonstrated
-in Figure~\ref{fig:corr_tildex}.
+onto the orthohgonal space $\Lin^{\perp}(\mathbf{1})$ yields zero as demonstrated
+in Figure~\ref{fig:corr_final}.
 Moreover, it follows that the angle between $\tilde x$ and $y$ is still $\varphi$.
 
 \begin{figure}
-  \centering
-  \includegraphics[width=0.6\linewidth]{figures/02_correlation_constant_decomposition.pdf}
-  \caption{Decomposition and projection of $\tilde x$}
-  \label{fig:corr_tildex}
+\begin{center}
+\includegraphics[width=0.6\linewidth]{figures/02_correlation_constant_proof.pdf}
+\label{fig:corr_final}
+\caption{$\sCorr(x + \alpha \mathbf{1}, y) = \sCorr(x,y)$ as the corresponding angles are equal..}
+\end{center}
 \end{figure}
+
 
 Finally, putting everything together we finish the proof:
 \[
 \sCorr(x + \alpha \mathbf{1}, y) = \sCorr(x,y)
 \]
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.6\linewidth]{figures/02_correlation_constant_proof.pdf}
-  \caption{$\sCorr(x + \alpha \mathbf{1}, y) = \sCorr(x,y)$ as the corresponding angles are equal.}
-  \label{fig:corr_final}
-\end{figure}
 \end{proof}
 
 
 \subsection{Sample correlation coefficient in simple linear regression}
-
-\marginnote{
-Assuming the underlying relationship between $x$ and $y$ to be
-\[
-y_i = \beta_1 + \beta_2 x_i + \varepsilon_i \quad i=1,\ldots,n
-\]
-where $\varepsilon_i$ is an error term the following holds
-\begin{align*}
-\sCorr(y, \hat y) &= \frac{\sCov(y)\sCov(\hat y)}{\sqrt{\sVar(y)\sVar(\hat y)}} \\
-&= \frac{\sCov(y)\sCov(\hat \beta_1 + \hat \beta_2 x)}{\sqrt{\sVar(y)\sVar(\hat \beta_1 + \hat \beta_2 x)}} \\
-&= \frac{\sCov(y)\sCov(\hat \beta_2 x)}{\sqrt{\sVar(y)\sVar(\hat \beta_2 x)}} \\
-&= \frac{\hat \beta_2 \sCov(y)\sCov(x)}{|\hat \beta_2| \sqrt{\sVar(y)\sVar(x)}} \\
-&= sign(\hat \beta_2) \frac{\sCov(y)\sCov(x)}{\sqrt{\sVar(y)\sVar(x)}}
-\end{align*}
-}
 
 \begin{theorem}
 A linear regression model with one explanatory variable and constant term
@@ -170,35 +150,38 @@ has the property
 \]
 \end{theorem}
 
-\begin{proof}
-Firstly, we consider the case when $\hat \beta_2 > 0$ and introduce the base
-picuture of the proof as depicted in Figure~\ref{fig:corr_pos_base}.
-It has been shown earlier that the correlation coefficient represents the angle
-betweem two random vectors.
-So in order to complete the proof we need to find the appropriate angles and compare them.
+\marginnote{
+Assuming the underlying relationship between $x$ and $y$ to be
+\[
+y_i = \beta_1 + \beta_2 x_i + \varepsilon_i \quad i=1,\ldots,n
+\]
+where $\varepsilon_i$ is an error term the following holds
+\begin{align*}
+\sCorr(y, \hat y) &= \frac{\sCov(y, \hat y)}{\sqrt{\sVar(y)\sVar(\hat y)}} \\
+&= \frac{\sCov(y, \hat \beta_1 + \hat \beta_2 x)}{\sqrt{\sVar(y)\sVar(\hat \beta_1 + \hat \beta_2 x)}} \\
+&= \frac{\sCov(y, \hat \beta_2 x)}{\sqrt{\sVar(y)\sVar(\hat \beta_2 x)}} \\
+&= \frac{\hat \beta_2 \sCov(y, x)}{|\hat \beta_2| \sqrt{\sVar(y)\sVar(x)}} \\
+&= sign(\hat \beta_2) \frac{\sCov(y,x)}{\sqrt{\sVar(y)\sVar(x)}} \\
+&= sign(\hat \beta_2) \sCorr(y, x)
+\end{align*}
+}
 
-%\begin{figure}[h!]
-%\center{\includegraphics[width=0.35\linewidth]{figures/02_simple_regression_coefficient_basic.pdf}}
-%\caption{Vectors $x$, $y$ and $\mathbf{1}$.}
-%%\label{fig:corr_pos_base}
-%\setfloatalignment{b}
-%\end{figure}
+\begin{proof}
+Firstly, we consider the case when $\hat \beta_2 > 0$.
+It has been shown earlier that the correlation coefficient represents the angle
+between two random vectors.
+So, in order to complete the proof we need to find the appropriate angles and compare them.
 
 However, it seems to be difficult to compare the angles in the three dimensional space.
-That is why we start with projecting both $x$ and $y$ onto the space perpendicular to the vector of all ones $\mathbf{1}$ as shown in Figure~\ref{fig:corr_pos_xyc}.
-We denote this space as $Lin^{\perp}(\mathbf{1})$. The resulting vectors are $x - \bar x \cdot \mathbf{1}$  and $y - \bar y \cdot \mathbf{1}$ respectively
-since projection of any vector $\vec{a}$ on the line given by a vector of all ones yields the vector of averages $\vec{\bar a}$.
+That is why we start with projecting both $x$ and $y$ onto the plane perpendicular to the vector of all ones (denoted as $\mathbf{1}$) as shown in Figure~\ref{fig:corr_pos_xyc}.
+We denote this space as $\Lin^{\perp}(\mathbf{1})$. The resulting vectors are $x - \bar x \cdot \mathbf{1}$  and $y - \bar y \cdot \mathbf{1}$, respectively,
+since projection of any vector $\vec{a}$ onto the span of a vector of all ones yields the vector of averages $\vec{\bar a}$.
 
-\begin{marginfigure}[3\baselineskip]
-\includegraphics[scale=0.7]{figures/02_simple_regression_coefficient_basic.pdf}
-\caption{Vectors $x$, $y$ and $\mathbf{1}$.}
-\label{fig:corr_pos_base}
-\end{marginfigure}
 
-In order to get the angle between $y$ and $\hat y$ we should start with regressing $y$ on $Lin(x, \mathbf{1})$.
-Then the only thing thing left is to project $\hat y$ onto $Lin^{\perp}\mathbf{1}$ since the $y$ vector has already been projected.
+In order to get the angle between $y$ and $\hat y$ we should start with regressing $y$ on $\Lin(x, \mathbf{1})$.
+Then the only thing left is to project $\hat y$ onto $\Lin^{\perp}(\mathbf{1})$ since the $y$ vector has already been projected.
 Note that the projected $\hat y$ falls onto tha span of vector $x - \bar x \cdot \mathbf{1}$ as it can be decomposed into a sum $a x + b \mathbf{1}$ where $a, b \in \mathbb{R}$.
-$a x$ is projected in the same way as $x$ and $b \mathbf{1}$ yields zero when projected onto the orthogonal space.
+The first component $a x$ is projected in the same way as $x$ and $b \mathbf{1}$ yields zero when projected onto the orthogonal space.
 The result of this step is shown in Figure~\ref{fig:corr_pos_yhatc}.
 
 \begin{figure*}[h!]
@@ -210,7 +193,7 @@ The result of this step is shown in Figure~\ref{fig:corr_pos_yhatc}.
 \subfigure[]{
 \includegraphics[width=0.45\linewidth]{figures/02_simple_regression_coefficient_yhat_projected.pdf}
 \label{fig:corr_pos_yhatc}}
-\caption{\subref{fig:corr_pos_xyc}: `Centred' $x$ and $y$, i.e., projected onto $Lin^{\perp}(\mathbf{1})$; \subref{fig:corr_pos_yhatc}: `Centred' $\hat y$, i.e., projected onto $Lin^{\perp}(\mathbf{1})$.}
+\caption{\subref{fig:corr_pos_xyc}: `Centred' $x$ and $y$, i.e., projected onto $\Lin^{\perp}(\mathbf{1})$; \subref{fig:corr_pos_yhatc}: `Centred' $\hat y$, i.e., projected onto $\Lin^{\perp}(\mathbf{1})$.}
 \end{center}
 \end{figure*}
 
@@ -219,8 +202,10 @@ Since the projection of $\hat y$ lies exactly on the span of vector $x - \bar x 
 Now consider the case when $\hat \beta_2 < 0$.
 Note that the sign of $\beta_1$ does not influence the correlation coefficient sign.
 The only difference is that now $\hat y$ is projected onto the span of  $x - \bar x \cdot \mathbf{1}$ and not on this vector itself while the projections of $x$ and $y$ remain the same.
-Looking at Figure~\ref{fig:corr_negative} we deduce that the angle betwween $y$ and $\hat y$ is compelement to the angle between $x$ and $y$.
-Using trigonometric properties, we simplify $\cos(180^{\circ} - \varphi) = -\cos\varphi$ which in turn implies $\sCorr(x,y) = -\sCorr(y,\hat y)$.
+Looking at Figure~\ref{fig:corr_negative} we deduce
+that the~angle between $y$ and $\hat y$ is compelement to the angle between $x$ and $y$.
+Using trigonometric properties, we simplify $\cos(180^{\circ} - \varphi) = -\cos\varphi$
+which in turn implies $\sCorr(x,y) = -\sCorr(y,\hat y)$.
 
 \begin{figure}[h!]
 \begin{center}
@@ -236,7 +221,8 @@ Using trigonometric properties, we simplify $\cos(180^{\circ} - \varphi) = -\cos
 \subsection{RSS + ESS = TSS}
 
 \marginnote{
-Consider a regresion model with $n$ observations and $k$ explanatory variables including a constant unit vector
+Consider a regression model with $n$ observations and $k$ explanatory variables
+including a constant unit vector % unit?
 \[
 y = X \beta + \varepsilon
 \]
@@ -254,26 +240,8 @@ Then we define residual sum of squares (RSS), explained sum of squares (ESS) and
 \begin{align*}
 RSS &= \lVert y - \hat y \rVert^2_2 \\
 ESS &= \lVert \hat y - \bar y \rVert^2_2 \\
-TSS &= \lVert y - \bar y \rVert \\
+TSS &= \lVert y - \bar y \rVert^2_2 \\
 \end{align*}
-Disclosing parentheses and using the fact that $\hat{y}^T y = \hat{y}^T \hat{y}$
-\begin{align*}
-\hat{y}^T y &= \beta^T X^T y \\
-&=  y^T X (X^T X)^{-1} X^T y \\
-\hat{y}^T \hat{y} &= \beta^T X^T X \beta \\
-&= y^T X (X^T X)^{-1} X^T X (X^T X)^{-1} X^T y \\
-&= y^T X (X^T X)^{-1} X^T y
-\end{align*}
-we obtain
-\begin{align*}
-RSS &= y^T y -\hat{y}^T \hat{y} \\
-ESS &= \hat{y}^T \hat{y} - \hat{y}^T \bar{y} + \bar{y}^T \bar{y} \\
-TSS &= y^T y - 2 y^T \bar y +  \bar{y}^T \bar{y}
-\end{align*}
-When putting everything together all the terms cancel out which proves
-\[
-ESS + RSS = TSS
-\]
 }
 
 \begin{theorem}
@@ -293,68 +261,79 @@ The proof will be presented for the case of two regressor $x$ and $\mathbf{1}$ i
 However, the same logic applies for the case of $k$ regressors.
 
 We start with depicting the vectors $y \in \mathbb{R}^{n-2}$ and $x, \mathbf{1} \in \mathbb{R}^2$.
-Then we project $y$ onto $Lin(x, \mathbf{1})$ and obtain $\hat y$ which is shown in Figure~\ref{fig:tss_base}.
+Then we project $y$ onto $\Lin(x, \mathbf{1})$ and obtain $\hat y$ which is shown in Figure~\ref{fig:rss}.
 
 From this picture we can immediately derive $\sqrt{RSS}$ as by definition this is the squared difference between $y$ and $\hat y$.
 
-\begin{figure}[h!]
+\begin{figure*}[h!]
 \begin{center}
 \subfigure[]{
-\includegraphics[width=0.4\linewidth]{figures/02_rss_ess_tss_yhat.pdf}
-\label{fig:tss_base} }
+\includegraphics[width=0.3\linewidth]{figures/02_rss_ess_tss_yhat.pdf}
+\label{fig:rss}}
 \hspace{4ex}
 \subfigure[]{
-\includegraphics[width=0.4\linewidth]{figures/02_rss_ess_tss_sqr_rss.pdf}
-\label{fig:tss_rss}}
-\caption{\subref{fig:tss_base}: Vectors $y \in \mathbb{R}^{n-2}$ and $\hat y \in Lin(x, \mathbf{1})$; \subref{fig:tss_rss}: Residual sum of squares.}
+\includegraphics[width=0.3\linewidth]{figures/02_rss_ess_tss_sqr_tss_ess.pdf}
+\label{fig:tss_ess}}
+\subfigure[]{
+\includegraphics[width=0.3\linewidth]{figures/02_rss_ess_tss_final.pdf}
+\label{fig:final}
+}
+\caption{\subref{fig:rss}: Residual sum of squares;
+\subref{fig:tss_ess}: Total sum of squares and residual sum of squares;
+\subref{fig:final}: Illustration of the equality $(\sqrt{RSS})^2 + (\sqrt{ESS})^2 = (\sqrt{TSS})^2$
+where $a$ stands for $\sqrt{RSS}$, $b$ — $\sqrt{TSS}$, $c$ — $\sqrt{ESS}$.}
 \end{center}
-\end{figure}
+\end{figure*}
 
 So as to visualize $ESS$ and $TSS$ we first need to visualize vector of averages $\bar y$.
 Geometrically this means projecting a vector onto a line spanned by vector $\mathbf{1}$.
 
 Now we both project $y$ and $\hat y$ onto $\mathbf{1}$ and following the definition obtain $\sqrt{TSS}$ as the difference vector $y - \bar y$ and $\sqrt{ESS}$ as the vector $\hat y - \bar y$.
 
-\begin{figure}[h!]
-\begin{center}
-\subfigure[]{
-\includegraphics[width=0.4\linewidth]{figures/02_rss_ess_tss_sqr_tss.pdf}
-\label{fig:tss_tss}}
-\hspace{4ex}
-\subfigure[]{
-\includegraphics[width=0.4\linewidth]{figures/02_rss_ess_tss_sqr_ess.pdf}
-\label{fig:tss_ess}}
-\caption{\subref{fig:tss_tss}: Total sum of squares; \subref{fig:tss_ess}: Explained sum of squares.}
-\end{center}
-\end{figure}
-
-\begin{marginfigure}
-\includegraphics[scale=0.7]{figures/02_rss_ess_tss_final.pdf}
-\caption{$(\sqrt{RSS})^2 + (\sqrt{ESS})^2 = (\sqrt{TSS})^2$}
-\label{fig:tss_final}
-\end{marginfigure}
-
 The final step is to put everything together.
-Note that since $y - \hat y$ is perpendicular to $Lin(x, \mathbf{1})$ it is also perpendicular to $\hat y - \bar y$ and $\mathbf{1}$ as these vectoros are in $Lin(x, \mathbf{1})$.
+Note that since $y - \hat y$ is perpendicular to $\Lin(x, \mathbf{1})$ it is also perpendicular to $\hat y - \bar y$ and $\mathbf{1}$ as these vectoros are in $\Lin(x, \mathbf{1})$.
 Then, applying the theorem of three perpendiculars we conclude that the foot of vector $y - \bar y$ is the same point as the foot of the vector $\hat y - \bar y$.
 Thus, we obtain a right angle triangle and can apply the Pythagorean theorem for the catheti $\sqrt{RSS}$ and $\sqrt{ESS}$ and the
 hypotenuse $\sqrt{TSS}$:
 \[
-(\sqrt{RSS})^2 + (\sqrt{ESS})^2 = (\sqrt{TSS})^2
+\left(\sqrt{RSS}\right)^2 + \left(\sqrt{ESS}\right)^2 = \left(\sqrt{TSS}\right)^2
 \]
+
+\marginnote[-5\baselineskip]{
+Disclosing parentheses and using the fact that $\hat{y}^T y = \hat{y}^T \hat{y}$
+\begin{align*}
+\hat{y}^T y &= \beta^T X^T y \\
+&=  y^T X (X^T X)^{-1} X^T y \\
+\hat{y}^T \hat{y} &= \beta^T X^T X \beta \\
+&= y^T X (X^T X)^{-1} X^T X (X^T X)^{-1} X^T y \\
+&= y^T X (X^T X)^{-1} X^T y
+\end{align*}
+we obtain
+\begin{align*}
+RSS &= y^T y -\hat{y}^T \hat{y} \\
+ESS &= \hat{y}^T \hat{y} - \hat{y}^T \bar{y} + \bar{y}^T \bar{y} \\
+TSS &= y^T y - 2 y^T \bar y +  \bar{y}^T \bar{y}
+\end{align*}
+When putting everything together all the terms cancel out which proves
+\[
+ESS + RSS = TSS
+\]
+}
 \end{proof}
 
-
+\vspace{3.5cm}
 \subsection{Determination coefficient}
 
-\marginnote{
-\begin{multline*}
-\sCorr^2(y,\hat y) = \left(\frac{\sCov(y, \hat y)}{\sqrt{\sVar(y)\sVar(\hat y)}}\right)^2 \\
-= \frac{\sCov(y, \hat y) \sCov(y, \hat y)}{\sVar(y)\sVar(\hat y)} \\
-= \frac{\sCov(\hat y + e, \hat y) \sCov(\hat y + e, \hat y)}{\sVar(y)\sVar(\hat y)} \\
-= \frac{(\sCov(\hat y, \hat y) + \sCov(e, \hat y))(\sCov(\hat y, \hat y) + \sCov(e, \hat y))}{\sVar(y)\sVar(\hat y)} \\
-= \frac{\sVar(\hat y) \sVar(\hat y)}{\sVar(y)\sVar(\hat y)} = \frac{\sVar(\hat y)}{\sVar(y)} = \frac{ESS}{TSS} = R^2
-\end{multline*}
+\marginnote[-2\baselineskip]{
+\begin{align*}
+\sCorr^2(y,\hat y) &= \left(\frac{\sCov(y, \hat y)}{\sqrt{\sVar(y)\sVar(\hat y)}}\right)^2 \\
+&= \frac{\sCov(y, \hat y) \sCov(y, \hat y)}{\sVar(y)\sVar(\hat y)} \\
+&= \frac{\sCov(\hat y + e, \hat y) \sCov(\hat y + e, \hat y)}{\sVar(y)\sVar(\hat y)} \\
+&= \frac{\sCov(\hat y, \hat y) + \sCov(e, \hat y)}{\sVar(y)} \\
+&\cdot \frac{\sCov(\hat y, \hat y) + \sCov(e, \hat y)}{\sVar(\hat y)} \\
+&= \frac{\sVar(\hat y) \sVar(\hat y)}{\sVar(y)\sVar(\hat y)} \\
+&= \frac{\sVar(\hat y)}{\sVar(y)} = \frac{ESS}{TSS} = R^2
+\end{align*}
 }
 
 \begin{theorem}
@@ -372,7 +351,7 @@ R^2 = \sCorr^2(y, \hat y)
 Proving this theorem geometrically means showing that the determination coefficient can be interpreted as some squared angle
 which happens to be eqaul to the squared angle betwen $y$ and $\hat y$.
 
-Consider Figure~\ref{fig:tss_final} from the previous proof.
+Consider Figure~\ref{fig:final} from the previous proof.
 It was shown there that the vectors $y - \bar y$, $y - \hat y$ and $\hat y - \bar y$ form a right triangle.
 Having defined the determination coefficient as
 \[
@@ -384,11 +363,12 @@ R^2 = \frac{ESS}{TSS} = \cos^2 \varphi
 \]
 as shown in Figure~\ref{fig:r_sq_angle}.
 
-\begin{figure}
-  \center{\includegraphics{figures/02_determination_coefficient.pdf}}
-  \caption{Determination coefficient as squared $\cos \varphi$}
+\begin{marginfigure}
+  \includegraphics{figures/02_determination_coefficient.pdf}
+  \caption{Determination coefficient as squared $\cos \varphi$
+  where $a$ stands for $\sqrt{RSS}$, $b$ — $\sqrt{TSS}$, $c$ — $\sqrt{ESS}$}
   \label{fig:r_sq_angle}
-\end{figure}
+\end{marginfigure}
 
 Recall that the sample correlation coefficient two vectors was defined earlier as the angle between these two vectors.
 Thus, we conclude that $\sCorr(y, \hat y)$ is the angle between $y$ and $\hat y$ which is also eqaul to $\cos \varphi$.
@@ -401,11 +381,10 @@ R^2 = \sCorr^2(y, \hat y)
 
 \subsection{Regression line and point of averages}
 
-\marginnote{
+\marginnote[-1\baselineskip]{
 If the regression contains the intercept, the following equation holds:
 \begin{align*}
-\hat y  &= X \hat \beta \\
-&= X (X^T X)^{-1} X^T y \\
+\hat y  &= X \hat \beta = X (X^T X)^{-1} X^T y \\
 &= X (X^T X)^{-1} X^T X \beta + X (X^T X)^{-1} X^T \varepsilon
 \end{align*}
 Premultiplying both sides by $X^T$, we obtain:
@@ -444,20 +423,22 @@ the point of averages lies on the estimated regression line.
 For the geometrical proof it suffices to show that $\hat y$ is a linear combination of the regressors, which is true by construction,
 and that $\frac{1}{n} \sum_{i=1}^{n} \hat y_i = \frac{1}{n} \sum_{i=1}^{n} y$. In order for the pictures to be more clear the proof will be presented for the case of two regressors.
 
-The first step is regressing $y$ on $Lin(\mathbf{1}, x)$. As shown in Figure~\ref{fig:averages_lin}, we obtain $\hat y$ as a linear combination of $\mathbf{1}$ and $x$.
+The first step is regressing $y$ on $\Lin(\mathbf{1}, x)$. As shown in Figure~\ref{fig:averages_lin}, we obtain $\hat y$ as a linear combination of $\mathbf{1}$ and $x$.
 The next step is to regress both $y$ and $\hat y$ on $\mathbf{1}$ which results in $\bar y$ and $\bar \hat y$ correspondingly.
-By the theorem of three perpendiculars, $\bar y = \bar \hat y$ which is shown in Figure~\ref{fig:averages_bars}.
+By the theorem of three perpendiculars, $\bar y = \bar{\hat y}$ which is shown in Figure~\ref{fig:averages_bars}.
 
 \begin{figure}[ht!]
 \begin{center}
 \subfigure[]{
-\includegraphics[width=0.4\linewidth]{figures/02_averages_yhat_decomposed.pdf}
+\includegraphics[width=0.35\linewidth]{figures/02_averages_yhat_decomposed.pdf}
 \label{fig:averages_lin} }
 \hspace{4ex}
 \subfigure[]{
-\includegraphics[width=0.4\linewidth]{figures/02_averages_final.pdf}
+\includegraphics[width=0.35\linewidth]{figures/02_averages_final.pdf}
 \label{fig:averages_bars}}
-\caption{\subref{fig:averages_lin}: Regression of $y$ on $Lin(\mathbf{1},x)$; \subref{fig:averages_bars}: Regression of $y$ and $\hat y$ on $\mathbf{1}$.}
+\caption{\subref{fig:averages_lin}: Regression of $y$ on $\Lin(\mathbf{1},x)$;
+\subref{fig:averages_bars}: Regression of $y$ and $\hat y$ on $\mathbf{1}$.}
+\setfloatalignment{b}
 \end{center}
 \end{figure}
 \end{proof}
@@ -465,13 +446,13 @@ By the theorem of three perpendiculars, $\bar y = \bar \hat y$ which is shown in
 
 \subsection{Frisch–Waugh–Lovell theorem}
 
-\marginnote{From regresison~\ref{eq:fwl_2} we get the following estimator:
+\marginnote{From regresison~(\ref{eq:fwl_2}) we get the following estimator:
 \begin{align*}
 \hat\beta_2 &= ((M_1 X_2)^T M_1 X_2)^{-1}(M_1 X_2)^T M_1 y \\
 &= (X_2^T M_1^T M_1 X_2)^{-1}  X_2^T M_1^T M_1 y \\
 &= (X_2^T M_1 X_2)^{-1}  X_2^T M_1 y
 \end{align*}
-As for regresison~\ref{eq:fwl_1}, let us note that due to $y = \hat y + \hat u$ $y$ can be decomposed as follows:
+As for regresison~(\ref{eq:fwl_1}), let us note that due to $y = \hat y + \hat u$ $y$ can be decomposed as follows:
 \[
 y = Py + My = X_1 \hat \beta_1 + X_2 \hat \beta_2 + My
 \]
@@ -505,8 +486,8 @@ M_1 y = M_1 X_2 \beta_2 + M_1 u
 \end{equation}
 where $M_1 = I - P_1$ projects onto the~orthogonal complement of the~column space~of
 $X_1$ and $P_1 = X_1(X_1^TX_1)^{-1}X_1^T$ is the~projection onto the~column space of~$X_1$.
-Then the~estimate of $\beta_2$ from regression~\ref{eq:fwl_1} will be the~same
-as the~estimate from regression~\ref{eq:fwl_2}.
+Then the~estimate of $\beta_2$ from regression~(\ref{eq:fwl_1}) will be the~same
+as the~estimate from regression~(\ref{eq:fwl_2}).
 \end{theorem}
 
 There are two ways to~visualize the~proof of~the~Frisch-Waugh-Lovell theorem
@@ -518,11 +499,12 @@ using geometric concepts. Both are presented below.
 y_i = \beta_1 x_i + \beta_2 z_i + u_i
 \end{equation}
 
-We start with regression `all-at-once' and will distinct its coefficients with~index $(1)$.
-The~only step in~obtaining $\beta_1^{(1)}$ is regressing $y$ on~$Lin(x,z)$ and
+We start with a `one-step' regression  and will distinct its coefficients with
+an upper index $(1)$.
+The~only step in~obtaining $\beta_1^{1}$ is regressing $y$ on~$\Lin(x,z)$ and
 then expanding $\hat y$ as a~linear combination of~basis vectors $x$ and $z$,
 which is shown in~Figure~\ref{fig:fwl_1_regression_3d}. Figure~\ref{fig:fwl_1_regression_lin}
-depicts $Lin(x, z)$.
+depicts $\Lin(x, z)$.
 
 \begin{figure}[ht!]
 \begin{center}
@@ -533,11 +515,12 @@ depicts $Lin(x, z)$.
 \subfigure[]{
 \includegraphics[width=0.4\linewidth]{figures/02_fwl_v1_yhat_decomposed_lin.pdf}
 \label{fig:fwl_1_regression_lin}}
-\caption{\subref{fig:fwl_1_regression_3d}: Regression of $y$ on $Lin(x,z)$; \subref{fig:fwl_1_regression_lin}: $Lin(x, z)$.}
+\caption{\subref{fig:fwl_1_regression_3d}: Regression of $y$ on $\Lin(x,z)$;
+\subref{fig:fwl_1_regression_lin}: $\Lin(x, z)$.}
 \end{center}
 \end{figure}
 
-As for the~model~\ref{eq:fwl_2}, where several regressions are performed consecutively,
+As for the~model~(\ref{eq:fwl_2}) where several regressions are performed consecutively
 we start with regressing $y$~on~$z$, resulting in $\tilde{y}$,
 which we will refer~to as~`cleansed' $y$.
 
@@ -563,8 +546,8 @@ Geometric results of these two steps are presented in~\ref{fig:fwl_2_regression_
 
 Finally, `cleansed' $y$ must be regressed on `cleansed' $x$.
 However, it cannot be performed immediately as $\tilde{y}$ and $\tilde{x}$ are skew lines.
-So at first, we fix this problem by translation and after taht obtain
-$\hat\beta_1^{(2)}\tilde x$ (see Figure~\ref{fig:fwl_2_regression_trans}).
+So at first, we fix this problem by translation and after that obtain
+$\hat\beta_1^{2}\tilde x$ (see Figure~\ref{fig:fwl_2_regression_trans}).
 
 \begin{figure}[ht!]
 \begin{center}
@@ -580,7 +563,7 @@ $\hat\beta_1^{(2)}\tilde x$ (see Figure~\ref{fig:fwl_2_regression_trans}).
 \end{center}
 \end{figure}
 
-Now, let us picture all the results in one figure and mark some main points.
+Now let us picture all the results in one figure and mark some main points.
 
 \begin{figure}[ht!]
 \begin{center}
@@ -593,22 +576,22 @@ Now, let us picture all the results in one figure and mark some main points.
 \label{fig:fwl_3_lin}}
 \caption{\subref{fig:fwl_3_3d}: Point A stands for the origin, B — $\hat\gamma z$,
 C — $x$, D — $\hat\alpha z$, E — intersection of vector $x$ and line parallel to $\tilde x$,
-F — $\hat\beta_1^{(1)} x$, G — $\hat\beta_1^{(2)} \tilde{x}$; \subref{fig:fwl_3_lin}: $Lin(x,z)$.}
+F — $\hat\beta_1^{(1)} x$, G — $\hat\beta_1^{(2)} \tilde{x}$; \subref{fig:fwl_3_lin}: $\Lin(x,z)$.}
 \end{center}
 \end{figure}
 
-In Figure~\ref{fig:fwl_3_lin} segments $AF$ and $BH = DG$ stand for $\hat\beta_1^{(1)}x$
-and $\hat\beta_1^{(2)}\tilde x$ respectively, while segments AC and BC represent $x$ and $\tilde{x}$.
+In Figure~\ref{fig:fwl_3_lin} segments $AF$ and $BH = DG$ stand for $\hat\beta_1^{1}x$
+and $\hat\beta_1^{2}\tilde x$ respectively, while segments AC and BC represent $x$ and $\tilde{x}$.
 Having two congruent angles, triangles ABC and FHC are simillar.
 Then, it follows:
 \[
-\frac{AF}{AC} = \frac{BH}{BC} \Leftrightarrow \frac{\hat\beta_1^{(1)}x}{x} = \frac{\hat\beta_1^{(2)}\tilde x}{\tilde x} \Leftrightarrow \hat\beta_1^{(1)} = \hat\beta_1^{(2)}
+\frac{AF}{AC} = \frac{BH}{BC} \Leftrightarrow \frac{\hat\beta_1^{1}x}{x} = \frac{\hat\beta_1^{2}\tilde x}{\tilde x} \Leftrightarrow \hat\beta_1^{1} = \hat\beta_1^{2}
 \]
 
 2. Alternatively, we could implement a~concept close to the~partial correlation.
-In the~same model~\ref{eq:fwl_proof} we wiil treat $z$ vector fixed and again
+In the~same model~(\ref{eq:fwl_proof}) we wiil treat $z$ vector fixed and again
 consecutively cleanse the $x$ and $y$ variables by projecting them onto
-the~space orthogonal to $z$, i.e., $Lin^\perp(z)$ as demonstrated in Figure~\ref{fig:fwl_v2_rcleansed}.
+the~space orthogonal to $z$, i.e., $\Lin^\perp(z)$ as demonstrated in Figure~\ref{fig:fwl_v2_rcleansed}.
 Then we perform a~regression of the~`cleansed' $\tilde y$ on the~`cleansed' $\tilde x$
 (see Figure\ref{fig:fwl_v2_regression_cleansed}).
 
@@ -626,14 +609,14 @@ Then we perform a~regression of the~`cleansed' $\tilde y$ on the~`cleansed' $\ti
 \end{figure}
 
 Now we show that the~latter regression produces $\hat \beta_1$ coefficient which
-is exatly the~coefficient from the~`one-step' regression of~original $y$ onto
+is exactly the~coefficient from the~`one-step' regression of~original $y$ onto
 original $x$ and $z$. Recall that the~vector $y$ can be split~up into a~sum of
 some multiple of $x$ and some multiple of $z$. Since the second term is
 the~orthogonal component its projection yields zero. The~multiple of $x$
 is equal to $\hat \beta_1$ by construction.
 
 Assume that the~coefficient at~$\tilde x$ is some unknown variable $\hat \delta$.
-Then consider the~similar triangles in the $Lin(x,z)$. From the~proportions
+Then consider the~similar triangles in the $\Lin(x,z)$. From the~proportions
 we obtain:
 \[
 \frac{CE}{CA} = \frac{CD}{CB} \Leftrightarrow \frac{\hat \beta_1 x}{x} = \frac{\hat \delta \tilde x}{\tilde x} \Rightarrow \hat \beta_1 = \hat \delta
@@ -657,7 +640,7 @@ we obtain:
 \subsection{Duality of regressors and residuals}
 
 The idea of duality is widely used in mathematics.
-The concept is two apply some transformation twice and get the~original object.
+The concept is to apply some transformation twice and get the~original object.
 For example, if $f(a) = 1/a$:
 \[
 x \stackrel{f}{\to} \frac{1}{x} \stackrel{f}{\to} \frac{1}{1/x} = x
@@ -677,13 +660,13 @@ the original regressors $x_1, \ldots, x_k$.
 
 \begin{proof}
 
-We start with $2$-dimensional case with two regressors,
-and discuss the~case of spaces of higher dimensions later.
-
-\begin{marginfigure}
+\begin{marginfigure}[-2\baselineskip]
 \includegraphics[scale=0.7]{figures/02_duality_original_regressors.pdf}
 \caption{Two regressors in the unit circle.}
 \end{marginfigure}
+
+We start with $2$-dimensional case with two regressors,
+and discuss the~case of spaces of higher dimensions later.
 
 As stated in the~theorem we need to keep the~measure of the~lengths of the~regressors.
 In order to do this we choose a~basis in $\mathbb{R}^2$ in such a~way that
@@ -693,7 +676,7 @@ In order to do this we choose a~basis in $\mathbb{R}^2$ in such a~way that
 \end{align*}
 where $\lambda_1, \lambda_2 \in \mathbb{R}$.
 
-\begin{marginfigure}[2\baselineskip]
+\begin{marginfigure}
 \includegraphics[scale=0.7]{figures/02_duality_first_residuals.pdf}
 \label{fig:duality_fst_residuals}
 \caption{Residuals $\hat{u}_1$ and $\hat{u}_2$}
@@ -705,14 +688,14 @@ Then we perform two regressions
 &x_2 = \beta_2 x_1 + u_2
 \end{align*}
 and get the residuals $\hat{u}_1$, $\hat{u}_2$.
-Being orthogonal to $x_2$ and $x_1$ correspondingly, they can be written as follows
+Being orthogonal to $x_2$ and $x_1$, correspondingly, they can be written as follows
 \begin{align*}
 &\hat{u}_1 = \sin \alpha \cdot \lambda_1 \tilde{e}_1, \quad \lVert \tilde{e}_1 \rVert = 1 \\
 &\hat{u}_2 = \sin \alpha \cdot \lambda_2 \tilde{e}_2, \quad \lVert \tilde{e}_2 \rVert = 1
 \end{align*}
 where $\tilde{e}_1 \perp e_2$ and $\tilde{e}_2 \perp e_1$.
 
-For convinence we translate all the vectors $x_1$, $x_2$, $\hat{u}_1$, $\hat{u}_2$
+For convenience we translate all the vectors $x_1$, $x_2$, $\hat{u}_1$, $\hat{u}_2$
 to the origin of the unit circle as shown in Figure~\ref{fig:duality_fst_residuals_translated}
 and after that we invert them.
 
@@ -734,7 +717,7 @@ to get a vector $\tilde{\tilde a}$ which satisfies both
 & \cos(a, \tilde{\tilde a}) = 1
 \end{align*}
 
-\marginnote[3\baselineskip]{
+\marginnote[-2\baselineskip]{
 The transformation stated in the theorem is $f(v) = v / \lVert v \rVert^2$.
 Generally speaking, $g(v) = v / (c \cdot \lVert v \rVert^2)$ where $c \in \mathbb{R}$
 would also work.
@@ -745,7 +728,7 @@ v \stackrel{g}{\to} \frac{v}{c \cdot \lVert v \rVert^2} = w \stackrel{g}{\to} \\
 }
 
 Having applied the inversion to $\hat{u}_1$, $\hat{u}_2$, we obtained
-new vectors $y_1$, $y_2$. Morevover, there is an algebraic expression for them
+new vectors $y_1$, $y_2$. Moreover, there is an algebraic expression for them
 in terms of rotated basis $\tilde{e}_1$, $\tilde{e}_2$:
 \begin{align*}
 &\hat{u}_1 = \sin \alpha \cdot \lambda_1 \tilde{e}_1 \Rightarrow y_1 = \frac{1}{\sin \alpha \cdot \lambda_1} \tilde{e}_1 \\
@@ -775,10 +758,10 @@ Next, we perform another two regressions:
 \end{center}
 \end{figure*}
 
-There two things to notice about the new residuals $\hat{v}_1$, $\hat{v}_2$.
+There are two things to notice about the new residuals $\hat{v}_1$, $\hat{v}_2$.
 First, $\hat{v}_1$ is perpendicular to the line spanned by $\tilde{e}_2$.
 Similarly, $\hat{v}_2$ is perpendicular to the line spanned by $\tilde{e}_1$.
-This means, that they are parallel to $e_1$, $e_2$ correspondingly
+This means, that they are parallel to $e_1$, $e_2$, correspondingly,
 and once translated, they can be expressed as a multiple of $x_1$, $x_2$.
 
 Second, we can find the lengths of these new residuals from the~right
@@ -793,8 +776,8 @@ Thus, when translated to the origin, the new resiuduals can be rewritten as
 & \hat{v}_2 = \frac{1}{\lambda_2} e_2
 \end{align*}
 
-\begin{marginfigure}
-\includegraphics[scale=0.65]{figures/02_duality_final.pdf}
+\begin{marginfigure}[20\baselineskip]
+\includegraphics[scale=0.6]{figures/02_duality_final.pdf}
 \label{fig:duality_final}
 \caption{New residuals translated to the origin of the unit circle.}
 \end{marginfigure}
@@ -807,19 +790,20 @@ Following the same procedure as described above, we finally get the desired resu
 \end{align*}
 \end{proof}
 
+\vspace{4cm}
 \subsection{Gauss-Markov theorem}
 
 % Hansen
 \marginnote{
 Consider an estimator $\beta$ which is a linear function of $Y$:
 \[
-\beta = A^T Y
+\hat \beta = A^T Y
 \]
 where $A$ is an $n \times k$ function of $X$ such that $A^T X = I_k$.
 From
 \begin{align*}
 \Var(\hat\beta_{OLS}) &= (X^T X)^{-1} \sigma^2 \\
-\Var(A^T Y) &= A^T A \sigma^2
+\Var(A^T y) &= A^T A \sigma^2
 \end{align*}
 it follows that it is sufficient to prove that $A^T A - (X^T X)^{-1}$
 is positive semi-definite. Set $C = A - X(X^T X)^{-1}$ and note that $X^T C = 0$, then
@@ -852,7 +836,7 @@ Note that $A^T X = I_{k}$, then the following holds for all $\beta$:
 A^T X \beta &= \beta \\
 A^T_{alt} X \beta &= \beta
 \end{align*}
-Taking the differnce of these equations, we obtain:
+Taking the difference of these equations, we obtain:
 \[
 \left(A^T_{alt} - A^T\right) X \beta = 0 \Rightarrow \left(A^T_{alt} - A^T\right) \perp X
 \]
@@ -863,21 +847,21 @@ we get the following result
 \]
 where $a^{(2)}_{alt}$ and $a^{(2)}$ are the second columns of matrices
 $A_{alt}$ and $A$ correspondingly.
-Since $a^{(2)} \in Lin(col X)$, it follows that $a^{(2)}_{alt} \not \in Lin(col X)$.
+Since $a^{(2)} \in \Lin(\col X)$, it follows that $a^{(2)}_{alt} \not \in \Lin(\col X)$.
 
-\begin{marginfigure}[3\baselineskip]
+\begin{marginfigure}[1\baselineskip]
 \includegraphics[scale=0.7]{figures/02_gmt.pdf}
 \label{fig:gmt}
 \caption{Gauss-Markov theorem for the case of three regressors.}
 \end{marginfigure}
 
-Now we can expxress the variances of both estimators in terms of $a^{(2)}_{alt}$ and $a^{(2)}$:
+Now we can express the variances of both estimators in terms of $a^{(2)}_{alt}$ and $a^{(2)}$:
 \begin{align*}
 \Var\left(\hat{\beta}^{(2)}_{OLS}\right) &= \Var\left({a^{(2)}}^T y\right) = {a^{(2)}}^T \sigma^2 I_{k} a^{(2)} = \sigma^2 \left\lVert a^{(2)} \right\rVert^2 \\
 \Var\left(\hat{\beta}^{(2)}_{alt}\right) &= \Var\left({a^{(2)}}^T_{alt} y\right) =  {a^{(2)}}^T_{alt} \sigma^2 I_{k} a^{(2)}_{alt} = \sigma^2 \left\lVert a_{alt}^{(2)} \right\rVert^2
 \end{align*}
 Since vectors $a^{(2)}$, $a^{(2)}_{alt}$ and $a^{(2)} - a^{(2)}_{alt}$
-form a right triangle and $a^{(2)}_{alt} \not \in Lin(col X)$,
+form a right triangle and $a^{(2)}_{alt} \not \in \Lin(\col X)$,
 the vector $\left\lVert a_{alt}^{(2)} \right\rVert^2$ must be longer than $a^{(2)}$,
 and the corresponding estimator must have higher variance.
 
