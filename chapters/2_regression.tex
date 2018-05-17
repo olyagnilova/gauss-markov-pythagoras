@@ -502,6 +502,59 @@ $x_1$ also results in $\hat \beta_1 x_1$.
 \end{proof}
 
 \vspace{3cm}
+\subsection{Geometry of formula for OLS estimators}
+
+The following interpretation gives another view on the estimators obtained
+by the ordianry least squares method.
+Previously, we illustrated the ideas in the observations space, $\mathbb{R}^n$.
+Apparantely, the OLS estimators can be depicted in the regressors space, $\mathbb{R}^k$.
+This result follows from the Cramer's rule.
+
+Consider a linear model with two regressors:
+\[
+\hat y = \hat \beta_1 x_1 + \hat \beta_2 x_2.
+\]
+Let us denote $X = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$ and
+$\langle X, y \rangle = \begin{pmatrix} \langle x_1,  y \rangle \\
+\langle x_2,  y \rangle \end{pmatrix}$.
+Then, taking scalar product, we obtain:
+\[
+\langle X, y \rangle = \hat \beta_1 \langle X, x_1 \rangle + \hat \beta_2 \langle X, x_2 \rangle
+\]
+All the elements of this equation are illustrated in Figure~\ref{fig:cramers}.
+
+The area of each parallelogram is the determinant of the matrix with columns
+which form the corresponding parallelogram.
+For instance, the area of parallelogram formed by vectors $\langle X, y \rangle$, $\langle X, x_2 \rangle$
+is equal to $\det([\langle X, y \rangle  \langle X,  x_2 \rangle])$.
+The parallelogram formed by vectors $\langle X, \hat \beta_1 x_1 \rangle$,
+$\langle X, x_2 \rangle$ has the area of $\hat \beta_1 \det([\langle X, x_1 \rangle  \langle X, x_2 \rangle])$.
+Since both parallelograms must be of the same are we obtsin a formula for $\hat \beta_1$:
+\[
+\hat \beta_1 = \frac{\det([\langle X, y \rangle  \langle X,  x_2 \rangle])}{ \det([\langle X, x_1 \rangle  \langle X, x_2 \rangle])}.
+\]
+
+\begin{marginfigure}
+  \includegraphics[scale=0.5]{figures/02_cramers_rule.pdf}
+  \label{fig:cramers}
+  \caption{Illustration of estimators in $\mathbb{R}^k$ as the ratio of parallelogram areas.}
+\end{marginfigure}
+
+So as to generalize this result we introduce a matrix $A = (y | X)$
+that has $y$ as its first column and all the regressors as the rest ones.
+We will denote this matrix without column $y$ or $x$ as $A_{-y}$, $A_{-x}$, respectively.
+Then, we can write out the formula for $\beta_x$:
+\[
+\hat \beta_x = \frac{\det(\langle A_{-y}, A_{-x} \rangle)}{\det(\langle A_{-y}, A_{-y} \rangle)}.
+\]
+
+If there is a regression with unit vector among the regressors and
+the Frisch-Waugh-Lovell theorem is applied, the formula above takes the followin form:
+\[
+\hat \beta_x = \frac{\det(\sCov(A_{-y}, A_{-x}))}{\det(\sVar(A_{-y}))}.
+\]
+
+
 \subsection{Frisch–Waugh–Lovell theorem}
 
 \marginnote{From regresison~(\ref{eq:fwl_2}) we get the following estimator:
@@ -835,7 +888,7 @@ Thus, when translated to the origin, the new resiuduals can be rewritten as
 & \hat{v}_2 = \frac{1}{\lambda_2} e_2
 \end{align*}
 
-\begin{marginfigure}[5\baselineskip]
+\begin{marginfigure}[4\baselineskip]
 \includegraphics[scale=0.6]{figures/02_duality_final.pdf}
 \label{fig:duality_final}
 \caption{New residuals translated to the origin of the unit circle.}
@@ -849,11 +902,25 @@ Following the same procedure as described above, we finally get the desired resu
 \end{align*}
 \end{proof}
 
-\vspace{4cm}
+\vspace{3.5cm}
 \subsection{Gauss-Markov theorem}
 
+\begin{theorem}
+In the homoskedastic linear regression model the best (minimum-variance) linear
+unbiased estimator is given by the ordinary least squares.
+\end{theorem}
+
+
+\begin{proof}
+
+Consider an OLS estimator and an alternative one:
+\begin{align*}
+\hat{\beta}_{OLS} &= (X^T X)^{-1} X^T y = A^T y \\
+\hat{\beta}_{alt} &= A^T_{alt} y
+\end{align*}
+
 % Hansen
-\marginnote{
+\marginnote[-4\baselineskip]{
 Consider an estimator $\beta$ which is a linear function of $Y$:
 \[
 \hat \beta = A^T Y
@@ -879,17 +946,6 @@ Matrix $C^T C$ is positive semi-definite since
 \]
 }
 
-\begin{theorem}
-In the homoskedastic linear regression model the best (minimum-variance) linear
-unbiased estimator is given by the ordinary least squares.
-\end{theorem}
-
-\begin{proof}
-Consider an OLS estimator and an alternative one:
-\begin{align*}
-\hat{\beta}_{OLS} &= (X^T X)^{-1} X^T y = A^T y \\
-\hat{\beta}_{alt} &= A^T_{alt} y
-\end{align*}
 Note that $A^T X = I_{k}$, then the following holds for all $\beta$:
 \begin{align*}
 A^T X \beta &= \beta \\
@@ -927,6 +983,8 @@ and the corresponding estimator must have higher variance.
 
 \end{proof}
 
+\vspace{1cm}
+
 \subsection{Geometry of instrumental variables}
 
 Consifder a model with an endogenity problem, i.e. explanotary variable $x$
@@ -946,7 +1004,7 @@ These steps result in $\beta_{IV}$ estimator which is illustrated in Figure~\ref
 The same result could be obtained with the oblique projection.
 That is projecting $y$ onto $x$ along the vector perpendicular to the span of $z$.
 
-\begin{marginfigure}
+\begin{marginfigure}[10\baselineskip]
 \includegraphics[scale=0.85]{figures/02_instr.pdf}
 \caption{Geometry of instrumental variables. $A$ stands for $\hat \beta_{IV} \hat x$,
 $B$ — $\hat x$, $C$ — $x$, $D$ — $\hat \beta_{IV} x$.}
@@ -965,7 +1023,14 @@ and then project the result onto $x$ which gives the same outcome
 by the theorem of three perpendiculars. Thus, we get another triangle $\bigtriangleup OAD$
 where $\overrightarrow{OA} = \hat \beta_{IV} \hat x$, $\overrightarrow{OD} = \hat \gamma x$.
 Since triangles $\bigtriangleup OBC$ and $\bigtriangleup OAD$ are similar
-it follows that $\frac{OD}{OC} = \frac{OA}{OB}$ which means that $\hat \gamma = \hat \beta_{IV}$.
+it follows that
+\[
+\frac{OD}{OC} = \frac{OA}{OB}
+\]
+which means that
+\[
+\hat \gamma = \hat \beta_{IV}.
+\]
 
 
 \subsection{Geometry of proxy variables}
