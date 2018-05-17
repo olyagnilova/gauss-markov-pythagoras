@@ -32,14 +32,14 @@
 \tkzInterLL(O,x)(py1,y);
 \tkzGetPoint{betax}
 \draw[dashed] (y) -- (betax);
-\draw[->, dashed] (O) -- (betax) node[anchor=east]{$\hat{\beta}_{1}^{1}x$};
+\draw[->, dashed] (O) -- (betax) node[anchor=east]{$\hat{\beta}_{1}^{A}x$};
 
 \tkzDefLine[parallel=through y](x,O);
 \tkzGetPoint{py2}
 \tkzInterLL(O,z)(py2,y);
 \tkzGetPoint{betaz}
 \draw[dashed] (y) -- (betaz);
-\draw[->, dashed] (O) -- (betaz) node[anchor=south west]{$\hat{\beta}_{2}^{1}z$};
+\draw[->, dashed] (O) -- (betaz) node[anchor=south west]{$\hat{\beta}_{2}^{A}z$};
 \end{pgfinterruptboundingbox}
 \end{tikzpicture}
 \end{document}

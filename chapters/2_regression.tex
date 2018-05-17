@@ -445,6 +445,63 @@ By the theorem of three perpendiculars, $\bar y = \bar{\hat y}$ which is shown i
 \end{proof}
 
 
+\subsection{Orthogonality of regressors}
+
+\marginnote{
+Consider a model
+\[
+y = \beta_1 x_1 + \beta_2 x_2 + \varepsilon
+\]
+with centred regressors $x_1$, $x_2$ such that $\bar x_1 = \bar x_2 = 0$.
+Suppose we mistakenly believe in a model
+\[
+y = \beta_1^* x_1 + \varepsilon^*
+\]
+where $x_2$ is omitted. Then the new estimator
+\begin{align*}
+\hat \beta_1^* &= \frac{\sCov(x_1, y)}{\sVar(x_1)} \\
+&= \frac{\sCov(x_1, \beta_1 x_1 + \beta_2 x_2)}{\sVar(x_1)} \\
+&= \beta_1 + \beta_2 \frac{\sCov(x_1,x_2)}{\sVar(x_1)}
+\end{align*}
+will be unbiased if either $\beta_2 = 0$ or $\sCov(x1,x2) = 0$.
+}
+
+\begin{theorem}
+Omitting a variable in a regression model does not lead to a bias in coefficient
+estimators if either the coefficient of the omitted regressor equals zero
+or the regressors are uncorrelated.
+\end{theorem}
+
+\begin{proof}
+We will not consider the case when the coefficient of the omitted regressor
+equals zero because this means that the model is not mis-specified.
+The case of orthogonal regressors is less trivial.
+However, it can be easily proved once the geometric approach is implemented.
+
+\begin{marginfigure}
+\includegraphics[scale=0.7]{figures/02_uncorrelated_regressors.pdf}
+\label{fig:uncorrelated_regressors}
+\caption{In case of uncorrelated regressors omitting one of them
+does not result in bias of the estimator.}
+\end{marginfigure}
+
+Condider the following regression model
+\[
+y = \beta_1 x_1 + \beta_2 x_2 + \varepsilon
+\]
+where regressors $x_1$ and $x_2$ are uncorrelated, $x_1 \perp x_2$.
+When we perform a regression of $y$ onto both $x_1$, $x_2$
+we obtain predicted values $\hat y$ which can be broken up into a sum:
+\[
+\hat y = \hat \beta_1 x_1 + \hat \beta_2 x_2.
+\]
+Since $x_1$ and $x_2$ are orthogonal it folows that
+the difference $\hat y - \hat \beta_1 x_1$ must be orthogonal to $x_1$.
+Thus, by the theorem of three perpendiculars the projection of $y$ onto
+$x_1$ also results in $\hat \beta_1 x_1$.
+\end{proof}
+
+\vspace{3cm}
 \subsection{Frisch–Waugh–Lovell theorem}
 
 \marginnote{From regresison~(\ref{eq:fwl_2}) we get the following estimator:
@@ -501,8 +558,8 @@ y_i = \beta_1 x_i + \beta_2 z_i + u_i
 \end{equation}
 
 We start with a `one-step' regression  and will distinct its coefficients with
-an upper index $(1)$.
-The~only step in~obtaining $\beta_1^{1}$ is regressing $y$ on~$\Lin(x,z)$ and
+an upper index $A$.
+The~only step in~obtaining $\beta_1^{A}$ is regressing $y$ on~$\Lin(x,z)$ and
 then expanding $\hat y$ as a~linear combination of~basis vectors $x$ and $z$,
 which is shown in~Figure~\ref{fig:fwl_1_regression_3d}. Figure~\ref{fig:fwl_1_regression_lin}
 depicts $\Lin(x, z)$.
@@ -511,7 +568,7 @@ depicts $\Lin(x, z)$.
 \begin{center}
 \subfigure[]{
 \includegraphics[width=0.4\linewidth]{figures/02_fwl_v1_yhat_decomposed.pdf}
-\label{fig:fwl_1_regression_3d} }
+\label{fig:fwl_1_regression_3d}}
 \hspace{4ex}
 \subfigure[]{
 \includegraphics[width=0.4\linewidth]{figures/02_fwl_v1_yhat_decomposed_lin.pdf}
@@ -524,6 +581,7 @@ depicts $\Lin(x, z)$.
 As for the~model~(\ref{eq:fwl_2}) where several regressions are performed consecutively
 we start with regressing $y$~on~$z$, resulting in $\tilde{y}$,
 which we will refer~to as~`cleansed' $y$.
+We will denote its coefficients with an upper index $B$.
 
 \begin{equation}\label{eq:fwl_2_y_clean}
 \begin{aligned}
@@ -548,7 +606,7 @@ Geometric results of these two steps are presented in~\ref{fig:fwl_2_regression_
 Finally, `cleansed' $y$ must be regressed on `cleansed' $x$.
 However, it cannot be performed immediately as $\tilde{y}$ and $\tilde{x}$ are skew lines.
 So at first, we fix this problem by translation and after that obtain
-$\hat\beta_1^{2}\tilde x$ (see Figure~\ref{fig:fwl_2_regression_trans}).
+$\hat\beta_1^{B}\tilde x$ (see Figure~\ref{fig:fwl_2_regression_trans}).
 
 \begin{figure}[ht!]
 \begin{center}
@@ -577,16 +635,16 @@ Now let us picture all the results in one figure and mark some main points.
 \label{fig:fwl_3_lin}}
 \caption{\subref{fig:fwl_3_3d}: Point A stands for the origin, B — $\hat\gamma z$,
 C — $x$, D — $\hat\alpha z$, E — intersection of vector $x$ and line parallel to $\tilde x$,
-F — $\hat\beta_1^{(1)} x$, G — $\hat\beta_1^{(2)} \tilde{x}$; \subref{fig:fwl_3_lin}: $\Lin(x,z)$.}
+F — $\hat\beta_1^{A} x$, G — $\hat\beta_1^{B} \tilde{x}$; \subref{fig:fwl_3_lin}: $\Lin(x,z)$.}
 \end{center}
 \end{figure}
 
-In Figure~\ref{fig:fwl_3_lin} segments $AF$ and $BH = DG$ stand for $\hat\beta_1^{1}x$
-and $\hat\beta_1^{2}\tilde x$ respectively, while segments AC and BC represent $x$ and $\tilde{x}$.
+In Figure~\ref{fig:fwl_3_lin} segments $AF$ and $BH = DG$ stand for $\hat\beta_1^{A}x$
+and $\hat\beta_1^{B}\tilde x$ respectively, while segments AC and BC represent $x$ and $\tilde{x}$.
 Having two congruent angles, triangles ABC and FHC are simillar.
 Then, it follows:
 \[
-\frac{AF}{AC} = \frac{BH}{BC} \Leftrightarrow \frac{\hat\beta_1^{1}x}{x} = \frac{\hat\beta_1^{2}\tilde x}{\tilde x} \Leftrightarrow \hat\beta_1^{1} = \hat\beta_1^{2}
+\frac{AF}{AC} = \frac{BH}{BC} \Leftrightarrow \frac{\hat\beta_1^{A}x}{x} = \frac{\hat\beta_1^{B}\tilde x}{\tilde x} \Leftrightarrow \hat\beta_1^{A} = \hat\beta_1^{B}
 \]
 
 2. Alternatively, we could implement a~concept close to the~partial correlation.
@@ -777,7 +835,7 @@ Thus, when translated to the origin, the new resiuduals can be rewritten as
 & \hat{v}_2 = \frac{1}{\lambda_2} e_2
 \end{align*}
 
-\begin{marginfigure}[20\baselineskip]
+\begin{marginfigure}[5\baselineskip]
 \includegraphics[scale=0.6]{figures/02_duality_final.pdf}
 \label{fig:duality_final}
 \caption{New residuals translated to the origin of the unit circle.}
@@ -844,26 +902,27 @@ Taking the difference of these equations, we obtain:
 If we treat the coefficients separately and consider, for instance, $\beta^{(2)}$,
 we get the following result
 \[
-\left({a^{(2)}}^T_{alt} - {a^{(2)}}^T\right) \perp X
+\left(a^T_{alt} - a^T\right) \perp X
 \]
-where $a^{(2)}_{alt}$ and $a^{(2)}$ are the second columns of matrices
+where $a_{alt}$ and $a$ are the second columns of matrices
 $A_{alt}$ and $A$ correspondingly.
-Since $a^{(2)} \in \Lin(\col X)$, it follows that $a^{(2)}_{alt} \not \in \Lin(\col X)$.
+Since $a \in \Lin(\col X)$, it follows that $a_{alt} \not \in \Lin(\col X)$.
 
 \begin{marginfigure}[1\baselineskip]
 \includegraphics[scale=0.7]{figures/02_gmt.pdf}
 \label{fig:gmt}
-\caption{Gauss-Markov theorem for the case of three regressors.}
+\caption{Gauss-Markov theorem for the case of three regressors
+where $a^{(1)}$, $a^{(2)}$, $a^{(3)}$ are columns of matrix $A$.}
 \end{marginfigure}
 
-Now we can express the variances of both estimators in terms of $a^{(2)}_{alt}$ and $a^{(2)}$:
+Now we can express the variances of both estimators in terms of $a_{alt}$ and $a$:
 \begin{align*}
-\Var\left(\hat{\beta}^{(2)}_{OLS}\right) &= \Var\left({a^{(2)}}^T y\right) = {a^{(2)}}^T \sigma^2 I_{k} a^{(2)} = \sigma^2 \left\lVert a^{(2)} \right\rVert^2 \\
-\Var\left(\hat{\beta}^{(2)}_{alt}\right) &= \Var\left({a^{(2)}}^T_{alt} y\right) =  {a^{(2)}}^T_{alt} \sigma^2 I_{k} a^{(2)}_{alt} = \sigma^2 \left\lVert a_{alt}^{(2)} \right\rVert^2
+\Var\left(\hat{\beta}^{(2)}_{OLS}\right) &= \Var\left(a^T y\right) = a^T \sigma^2 I_{k} a = \sigma^2 \left\lVert a \right\rVert^2 \\
+\Var\left(\hat{\beta}^{(2)}_{alt}\right) &= \Var\left(a^T_{alt} y\right) =  a^T_{alt} \sigma^2 I_{k} a_{alt} = \sigma^2 \left\lVert a_{alt} \right\rVert^2
 \end{align*}
-Since vectors $a^{(2)}$, $a^{(2)}_{alt}$ and $a^{(2)} - a^{(2)}_{alt}$
-form a right triangle and $a^{(2)}_{alt} \not \in \Lin(\col X)$,
-the vector $\left\lVert a_{alt}^{(2)} \right\rVert^2$ must be longer than $a^{(2)}$,
+Since vectors $a$, $a_{alt}$ and $a - a_{alt}$
+form a right triangle and $a_{alt} \not \in \Lin(\col X)$,
+the vector $\left\lVert a_{alt} \right\rVert^2$ must be longer than $a$,
 and the corresponding estimator must have higher variance.
 
 \end{proof}

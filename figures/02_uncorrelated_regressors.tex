@@ -17,24 +17,29 @@
 \begin{tikzpicture}[scale=5,tdplot_main_coords]
 
 \coordinate (O) at (0,0,0);
-\coordinate (x) at (1.75,1.5,0);
-\coordinate (z) at (-1.75,0.5,0);
-\coordinate (hx) at (0.63, 0.54, 0);
-\coordinate (hz) at (-0.6825, 0.195, 0);
+\coordinate (x1) at (1.5,1.6,0);
+\coordinate (x2) at (-1.7,-0.3,0);
+\coordinate (px1) at (0.825, 0.88, 0);
+\coordinate (px2) at (-0.901,-0.159,0);
 
 \tdplotsetcoord{Y}{1}{50}{90}
 
-\draw[->] (O) -- (x) node[anchor=south west]{$x$};
+\draw[->] (O) -- (x1) node[anchor=south west]{$x_1$};
 \draw[->] (O) -- (Y) node[anchor=south west]{$y$};
-\draw[->] (O) -- (z) node[anchor=south east]{$z$};
+\draw[->] (O) -- (x2) node[anchor=north east]{$x_2$};
+\draw[->] (O) -- (Yxy) node[anchor=west]{$\hat y$};
+\draw[->] (O) -- (px1) node[anchor=south east]{$\hat \beta_1 x_1$};
+\draw[->] (O) -- (px2) node[anchor=east]{$\hat \beta_2 x_2$};
 
-\draw[->] (O) -- (Yxy) node[anchor=south west]{$\hat y$};
+\draw[dashed] (Yxy) -- (px1);
+\draw[dashed] (Yxy) -- (px2);
 \draw[dashed] (Y) -- (Yxy);
+\draw[dashed] (Y) -- (px1);
 
-\draw[dashed] (Yxy) -- (hx);
-\draw[->] (O) -- (hx) node[anchor=south]{\small $\hat\beta_1^{A} x$};
-\draw[dashed] (Yxy) -- (hz);
-\draw[->] (O) -- (hz) node[anchor=north]{\small $\hat\beta_2^{A} z$};
+\tkzMarkRightAngle[size=0.03](Y,px1,x1);
 \tkzMarkRightAngle[size=0.03](Y,Yxy,O);
+\tkzMarkRightAngle[size=0.03](x1,O,x2);
+\tkzMarkRightAngle[size=0.03](Yxy,px1,x1);
+
 \end{tikzpicture}
 \end{document}
