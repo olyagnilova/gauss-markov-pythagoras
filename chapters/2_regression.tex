@@ -459,8 +459,9 @@ y = \beta_1^* x_1 + \varepsilon^*
 \]
 where $x_2$ is omitted. Then the new estimator
 \begin{align*}
-\hat \beta_1^* &= \frac{\sCov(x_1, y)}{\sVar(x_1)} \\
-&= \frac{\sCov(x_1, \beta_1 x_1 + \beta_2 x_2)}{\sVar(x_1)} \\
+\E\left(\hat \beta_1^*\right) &= \E\left(\frac{\sCov(x_1, y)}{\sVar(x_1)}\right) \\
+&= \E\left(\frac{\sCov(x_1, \beta_1 x_1 + \beta_2 x_2 + \varepsilon)}{\sVar(x_1)}\right) \\
+&= \beta_1 + \beta_2 \frac{\sCov(x_1,x_2)}{\sVar(x_1)} + \E\left(\frac{\sCov(x_1, \varepsilon)}{\sVar(x_1)}\right) \\
 &= \beta_1 + \beta_2 \frac{\sCov(x_1,x_2)}{\sVar(x_1)}
 \end{align*}
 will be unbiased if either $\beta_2 = 0$ or $\sCov(x1,x2) = 0$.
@@ -501,7 +502,7 @@ Thus, by the theorem of three perpendiculars the projection of $y$ onto
 $x_1$ also results in $\hat \beta_1 x_1$.
 \end{proof}
 
-\vspace{3cm}
+\vspace{4cm}
 \subsection{Geometry of formula for OLS estimators}
 
 The following interpretation gives another view on the estimators obtained

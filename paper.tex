@@ -110,8 +110,8 @@ sorting = none]{biblatex}
 \maketitle
 \tableofcontents
 
-%\newpage
-%\input{chapters/0_intro.tex}
+\newpage
+\input{chapters/0_intro.tex}
 
 \newpage
 \input{chapters/1_random_variables.tex}
@@ -129,11 +129,9 @@ sorting = none]{biblatex}
 %\input{chapters/5_ideas.tex}
 
 \newpage
-%\printbibliography[ %doesn't work
-%heading=bibintoc,
-%title={References}
-%]
-
-\printbibliography
+\printbibliography[
+heading=bibintoc,
+title={References}
+]
 
 \end{document}
