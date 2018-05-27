@@ -93,7 +93,22 @@ in order to get $x^c = x - \bar x$ and $y^c = y - \bar y$ (`c' stands for `centr
 It can be shown that the~matrix corresponding to projecting onto the line spanned by
 a~vector of all ones has the~following form
 \[
-\frac{\mathbf{1}^T \mathbf{1}}{\mathbf{1} \mathbf{1}^T} = \frac{\begin{pmatrix} 1 & \ldots & 1 \end{pmatrix} \begin{pmatrix} 1 \\ \vdots \\ 1 \end{pmatrix}}{\sum_{i=1}^n 1} = \begin{pmatrix} \frac{1}{n} & \ldots & \frac{1}{n} \\ \vdots & \ddots & \vdots \\ \frac{1}{n} & \ldots & \frac{1}{n} \end{pmatrix}
+\frac{\mathbf{1} \mathbf{1}^T}{\mathbf{1}^T \mathbf{1}} =
+\frac{
+\begin{pmatrix}
+  1 \\
+  \vdots \\
+  1
+\end{pmatrix}
+\begin{pmatrix}
+  1 & \ldots & 1
+\end{pmatrix}
+}{\sum_{i=1}^n 1} =
+\begin{pmatrix}
+  \frac{1}{n} & \ldots & \frac{1}{n} \\
+  \vdots & \ddots & \vdots \\
+  \frac{1}{n} & \ldots & \frac{1}{n}
+\end{pmatrix}
 \]
 Thus, projecting onto the~orthogonal subspace is equivalent to
 substracting the~projected vector, i.e., the vector of averages, from the original one.
@@ -146,7 +161,7 @@ y = \beta_1 + \beta_2 x + \varepsilon
 \]
 has the property
 \[
-\sCorr(y, \hat y) = sign(\hat \beta_2) \sCorr(y, x)
+\sCorr(y, \hat y) = \sign(\hat \beta_2) \sCorr(y, x)
 \]
 \end{theorem}
 
@@ -161,8 +176,8 @@ where $\varepsilon_i$ is an error term the following holds
 &= \frac{\sCov(y, \hat \beta_1 + \hat \beta_2 x)}{\sqrt{\sVar(y)\sVar(\hat \beta_1 + \hat \beta_2 x)}} \\
 &= \frac{\sCov(y, \hat \beta_2 x)}{\sqrt{\sVar(y)\sVar(\hat \beta_2 x)}} \\
 &= \frac{\hat \beta_2 \sCov(y, x)}{|\hat \beta_2| \sqrt{\sVar(y)\sVar(x)}} \\
-&= sign(\hat \beta_2) \frac{\sCov(y,x)}{\sqrt{\sVar(y)\sVar(x)}} \\
-&= sign(\hat \beta_2) \sCorr(y, x)
+&= \sign(\hat \beta_2) \frac{\sCov(y,x)}{\sqrt{\sVar(y)\sVar(x)}} \\
+&= \sign(\hat \beta_2) \sCorr(y, x)
 \end{align*}
 }
 
