@@ -418,7 +418,7 @@ adjusted to the dimensions of the subspaces.}
 Taking the ratio of these length squared, we get the interpretaion
 of the angle between the original vector $z$ and its projection onto $L_1$:
 \[
-tg^2 \varphi = \frac{\lVert H_1 z \rVert^2}{\lVert H_2 z \rVert^2}.
+\tg^2 \varphi = \frac{\lVert H_1 z \rVert^2}{\lVert H_2 z \rVert^2}.
 \]
 Adjusting this ratio to the degrees of freedom, we get the desired definition.
 
@@ -436,7 +436,7 @@ $q$ — number of equtions used in the null hypothesis.
 
 \begin{marginfigure}
 \includegraphics[scale=0.55]{figures/04_ftest.pdf}
-\caption{F-statistic as the cotangent squared of $\varphi$
+\caption{F-statistic is proportional to the cotangent squared of $\varphi$,
 where $a$ stands for $\sqrt{RSS_{UR}}$, $b$ — $\sqrt{RSS_{R} -RSS_{UR}}$,
 $c$ — $\sqrt{RSS_{R}}$.}
 \label{fig:ftest}
@@ -458,5 +458,6 @@ in Figure~\ref{fig:ftest}.
 Adjusted to the degrees of freedom, the ratio can be expressed in terms of the
 angle between two vectors, $\varphi$, as demonstrated in Figure~\ref{fig:ftest}
 \[
-F = \frac{(RSS_{R} - RSS_{UR})/q}{RSS_{UR}/(n-k_{UR})} = \ctg^2 \varphi
+F = \frac{(RSS_{R} - RSS_{UR})/q}{RSS_{UR}/(n-k_{UR})} =
+\ctg^2 \varphi \cdot \frac{n - k_{UR}}{q}
 \]
