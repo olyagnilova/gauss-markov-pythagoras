@@ -1,9 +1,9 @@
-\section{Partial correlation}
+\section{Partial correlations}
 
-\subsection{Definition of partial correlation}
+\subsection{Definition of a partial correlation}
 
 \marginnote{
-Partial correlation is a~measure of degree of dependence between two random
+A partial correlation is a~measure of the degree of dependence between two random
 variables while controlling for the~effect of other random variables:
 \[
 \pCorr(X,Y; Z) = \frac{\pCov(X,Y;Z)}{\sqrt{\pVar(X;Z)\pVar(Y;Z)}}
@@ -13,19 +13,19 @@ and $\pCov(X,Y; Z) = \Cov(X - \alpha Z, Y - \beta Z)$, $\alpha$, $\beta$ are suc
 constants that $\Cov(X - \alpha Z, Z) = \Cov(Y - \beta Z, Z) = 0$.
 }
 
-Partial correlation can be defined in two ways.
+A partial correlation can be defined in two ways.
 We will provide both definitions and show their equivalence.
 
 \begin{definition}
-Partial correlation between random variables $X$ and $Y$ holding random variable $Z$
+A partial correlation between random variables $X$ and $Y$ holding random variable $Z$
 fixed is the~correlation coefficient between the~residuals in regression of $X$ onto
 $Z$ and the~residuals in regression of $Y$ onto $Z$.
 \end{definition}
 
-Firstly, we project random variable $X$ onto $Z$, which yields $\E(X \vert Z)$.
+Firstly, we project a random variable $X$ onto $Z$, which yields $\E(X \vert Z)$.
 The residuals in this regression are $X - \E(X \vert Z)$ — a vector in $\Lin^{\perp}(Z)$.
 We will call this variable `cleansed' and label it as $\widetilde X$.
-Applying the same procedure for $Y$ yields `cleansed' variable $\tilde Y = Y - \E(Y \vert Z) \in \Lin^{\perp}(Z)$.
+Applying the same procedure for $Y$ yields the `cleansed' variable $\tilde Y = Y - \E(Y \vert Z) \in \Lin^{\perp}(Z)$.
 The~angle between $\widetilde X$ and $\widetilde Y$ ($\varphi$ in Figure~\ref{fig:pcorr_def1})
 is the~correlation coefficient between these `cleansed' random variables and
 the~partial correlation between the~original ones.
@@ -58,7 +58,7 @@ Note, that $\alpha_{XY}$ and $\alpha_{XY}$ are of the~same sign.
 }
 
 \begin{definition}
-Partial correlation between random variables $X$ and $Y$ holding random variable $Z$
+A partial correlation between random variables $X$ and $Y$ holding random variable $Z$
 fixed is the~geometric mean between the coefficient $\beta_{XY}$ in regression
 \[
 X = \beta_{XY} Y + \beta_{XZ} Z + u_X
@@ -67,7 +67,7 @@ and the~coefficinent $\beta_{YX}$ in regression
 \[
 Y = \beta_{YX} X + \beta_{YZ} Z + u_Y
 \]
-Partial correlation has the same sign as the~coefficients $\beta_{XY}$ and $\beta_{YX}$.
+The partial correlation has the same sign as the~coefficients $\beta_{XY}$ and $\beta_{YX}$.
 \end{definition}
 
 Following the~definition, we need to start with regressing variable $X$ onto
@@ -107,7 +107,7 @@ same steps for $X$. Finally, we get the whole picture:
 \end{figure}
 
 Having plotted $\Lin^{\perp}(Z)$, now we can express $\cos \varphi$ in terms of $\beta_{XY}$
-and $\beta_{YX}$. We will use the fact that $\beta_{XY} \beta_{YX} > 0$:
+and $\beta_{YX}$. We use the fact that $\beta_{XY} \beta_{YX} > 0$:
 
 \begin{equation*}%\label{eq:part_cor_cos}
 \begin{split}
@@ -143,7 +143,7 @@ Then
 
 
 \begin{theorem}
-Partial correlation between $X$ and $Y$ holding $Z$ fixed is the negative
+The partial correlation between $X$ and $Y$ holding $Z$ fixed is the negative
 correlation coefficient between the residuals $u$ in the regression model
 \[
 X = \alpha_1 Y + \alpha_2 Z + u
@@ -155,15 +155,15 @@ Y = \beta_1 X + \beta_2 Z + v
 \end{theorem}
 
 \begin{proof}
-The first step is to find the residuals in the mentioned regressions.
+The first step is to find the residuals in the regressions.
 For example, in order to get $u$ we regress $X$ onto $\Lin(Y,Z)$
 which results in $\hat X = X - \E(X \vert Y, Z)$.
 Then we take the difference $X - \hat X = u$
-and project it as well as $X$ itself onto $\Lin^{\perp}(Z)$ as demonstrated
+and project it and $X$ itself onto $\Lin^{\perp}(Z)$ as demonstrated
 in Figure~\ref{fig:pcorr_t_x}.
 We denote the result as $\tilde u$ and $\widetilde X$ respectively.
 
-Figure~\ref{fig:pcorr_t_y} shows the same steps for obtainig $\tilde v$ and $\widetilde Y$.
+Figure~\ref{fig:pcorr_t_y} shows the same steps for obtaining $\tilde v$ and $\widetilde Y$.
 
 \marginnote[-6\baselineskip]{
 Substituting these into $\Cov(\tilde{u}, \tilde{v})$, we obtain:
@@ -207,10 +207,10 @@ Now we can write out $\Corr(\tilde{u}, \tilde{v})$:
 After putting these figures together, we need to measure the angle
 between the $\tilde u$ and $\tilde v$.
 Translating the $\tilde v$ vector to the orgin of $\tilde x$ as shown in Figure~\ref{fig:pcorr_t_lin},
-we conclude that the desired angle is the bigger one of the vertical angles.
-Hence, we can derive it from the property of quadrilateral
-by substraction all the known angles from $360^\circ$.
-Thus, the desired one is equal to $180^\circ - \varphi$.
+we conclude that the desired angle is the bigger of the vertical angles.
+Hence, we can derive it from the property of the quadrilateral
+by substracting all the known angles from $360^\circ$.
+Thus, the desired angle is $180^\circ - \varphi$.
 \begin{align*}
 \cos\varphi &= - \cos(180^\circ - \varphi) \\
 \Corr(\widetilde X, \widetilde Y) &= -\Corr(\tilde u, \tilde v) \\

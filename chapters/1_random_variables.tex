@@ -1,18 +1,18 @@
 \section{Geometric interpretation of random variables}\label{rvs}
 
-The fundamental part to start with is defining the geometric properties of random
-variables using some concepts of linear algebra.
+It is fundamental to define the geometric properties of random
+variables using linear algebra.
 
 Consider the vector space which consists of all random variables with finite
 mean and variance.
 We will regard each point in this space (or vector that correponds to that point
-in terms of linear algebra) a random variable.
+in terms of linear algebra) as a random variable.
 We define the scalar product of two random variables $X$ and $Y$ to be
 \[
 \langle X, Y \rangle = \Cov(X,Y).
 \]
-It is of no difficulty to check that the definition satisfies the properties
-of scalar product assuming that $X$ and $Y$ are the same random variables
+It is not difficult to check that the definition satisfies the properties
+of a scalar product assuming that $X$ and $Y$ are the same random variables
 if $\P(X=Y)=1$.
 
 \begin{marginfigure}
@@ -21,13 +21,13 @@ if $\P(X=Y)=1$.
 \label{fig:corr_def}
 \end{marginfigure}
 
-Having defined the inner product, we are now able to introduce the squared
+Having defined the scalar product, we are now able to introduce the squared
 length of a random variable $X$ which is
 \[
 \lVert X \rVert^2 = \langle X, X \rangle = \Cov(X,X) = \Var(X),
 \]
-so the length is simply the square root of this expression, i.e., the~standard
-deviation of $X$ ($\sigma_X$).
+so the~standard
+deviation of $X$ ($\sigma_X$) is the length.
 
 Recall that for any non-random vectors $a$ and $b$ the angle
 between them is calculated with the formula
@@ -35,7 +35,7 @@ between them is calculated with the formula
 \cos(a, b) = \frac{\langle a,  a\rangle}{|a| |b|}.
 \]
 The same applies for the random variables and it is already clear that
-two random variables are uncorrelated if and only if their scalar product
+two random variables are uncorrelated iff their scalar product
 equals $0$. Additionally, it means that these two random variables
 are orthogonal in the vector space.
 
@@ -44,8 +44,10 @@ variables is the correlation between two of them:
 \[
 \Corr(X,Y) = \frac{\Cov(X,Y)}{\sqrt{\Var(X)\Var(Y)}} = \frac{\langle X, Y \rangle}{\sqrt{\lVert X \rVert^2 \lVert Y \rVert^2}}.
 \]
-From the equivalence of $\Corr(X,Y)$ to the $\cos(a, b)$ it
+From the equivalence of $\Corr(X,Y)$ to $\cos(a, b)$ it
 automatically follows that the correlation coefficient can range from $-1$ to $1$.
+
+% proofreaded up to this line
 
 \begin{marginfigure}[10\baselineskip]
 \includegraphics{figures/01_pythagorean_theorem.pdf}
