@@ -11,7 +11,8 @@ all the theorems is also the same.
 \marginnote{
 \begin{multline*}
 \sCorr(x,y) = \frac{\sCov(x,y)}{\sqrt{\sVar(x)\sVar(y)}} \\
-= \frac{\frac{1}{n-1}\sum_{i=1}^n (x_i - \bar x)(y_i - \bar y)}{\sqrt{\frac{1}{n-1} \sum_{i=1}^n (y_i - \bar y)\frac{1}{n-1} \sum_{i=1}^n (\hat y_i - \bar{\hat y})}}
+= \frac{\frac{1}{n-1}\sum_{i=1}^n (x_i - \bar x)(y_i - \bar y)}
+{\sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \bar x)\frac{1}{n-1} \sum_{i=1}^n ( y_i -  \hat y)}}
 \end{multline*}
 }
 
@@ -157,7 +158,7 @@ Finally, putting everything together we finish the proof:
 \begin{theorem}
 A linear regression model with one explanatory variable and constant term
 \[
-y = \beta_1 + \beta_2 x + \varepsilon
+y = \beta_1 \mathbf{1} + \beta_2 x + \varepsilon
 \]
 has the property
 \[
@@ -606,7 +607,7 @@ Consider regression
 y = X_1 \beta_1 + X_2 \beta_2 + u
 \end{equation}
 where $X_{n \times k} = [X_1 X_2]$, i.e. $X_1$ consists of first $k_1$ columns of $X$ and $X_2$ consists of remaining $k_2$ columns of $X$,
-$\beta_1$ and $\beta_2$ are comfortable, i.e. $k_1 \times 1$ and $k_2 \times 1$ vectors.
+$\beta_1$ and $\beta_2$ are comformable, $k_1 \times 1$ and $k_2 \times 1$ vectors.
 Consider another regression
 \begin{equation}  \label{eq:fwl_2}
 M_1 y = M_1 X_2 \beta_2 + M_1 u
