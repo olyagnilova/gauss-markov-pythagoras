@@ -58,7 +58,7 @@ the projection of such a sample variable $y$ onto
 $\{cx| c \in \mathbb{R}\}$ is $\hat y = \sCorr(x,y) \cdot y$.
 
 Looking at Figure~\ref{fig:corr_proj}, we can interpret the~square of sample correlation coefficient.
-Using the fact that $cos^2 \varphi$ is the~squared ratio of
+Using the fact that $\cos^2 \varphi$ is the~squared ratio of
 the~leg adjacent to $\varphi$ to hypotenuse, we can conclude that
 \[
 \sCorr^2(x,y) = \frac{\sVar(\hat y)}{\sVar(y)},
@@ -214,7 +214,8 @@ The result of this step is shown in Figure~\ref{fig:corr_pos_yhatc}.
 \end{center}
 \end{figure*}
 
-Since the projection of $\hat y$ lies exactly on the span of vector $x - \bar x \cdot \mathbf{1}$, we can conclude that $cos \varphi = \cos \varphi '$ and to put it another way $\sCorr(x,y) = \sCorr(y, \hat y)$.
+Since the projection of $\hat y$ lies exactly on the span of vector $x - \bar x \cdot \mathbf{1}$,
+we can conclude that $\cos \varphi = \cos \varphi '$ and to put it another way $\sCorr(x,y) = \sCorr(y, \hat y)$.
 
 Now consider the case when $\hat \beta_2 < 0$.
 Note that the sign of $\beta_1$ does not influence the correlation coefficient sign.
@@ -366,7 +367,7 @@ R^2 = \sCorr^2(y, \hat y)
 
 \begin{proof}
 Proving this theorem geometrically means showing that the determination coefficient can be interpreted as some squared angle
-which happens to be eqaul to the squared angle betwen $y$ and $\hat y$.
+which happens to be eqaul to the squared angle between centered $y$ and $\hat y$.
 
 Consider Figure~\ref{fig:final} from the previous proof.
 It was shown there that the vectors $y - \bar y$, $y - \hat y$ and $\hat y - \bar y$ form a right triangle.
@@ -399,7 +400,7 @@ R^2 = \sCorr^2(y, \hat y)
 \subsection{Regression line and point of averages}
 
 \marginnote[-1\baselineskip]{
-If the regression contains the intercept, the following equation holds:
+The following decomposition of $\hat y$ holds:
 \begin{align*}
 \hat y  &= X \hat \beta = X (X^T X)^{-1} X^T y \\
 &= X (X^T X)^{-1} X^T X \beta + X (X^T X)^{-1} X^T \varepsilon
