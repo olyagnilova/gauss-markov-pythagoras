@@ -1,0 +1,71 @@
+\section{Geometric meaning of transpose}
+
+Let's consider two vectors, $a$ and $b$ and an action $M$.
+We apply the action $M$ to the first vector $a$ and
+consider the scalar product $\langle Ma, b\rangle$.
+What should be the equivalent action $N$ on $b$ that whould result
+in exactly the same scalar product?
+This action $N$ can be found from the equation
+\[
+\langle Ma, b \rangle = \langle a, Nb \rangle.
+\]
+
+We call the action $N$ as transpose of the action $M$.
+Our definition explains immediately why it is called transpose:
+the letter $M$ has changed its position.
+This definition is consistent with classical one, as
+\[
+\langle Ma, b\rangle = (Ma)^T b = a^T (M^T b) = \langle a, M^T b \rangle
+\]
+
+Let's find some transposes using geometric approach.
+
+Example 1.
+
+Consider the action $R$ on $\mathbb{R}^2$ that rotates arbitrary vector $a$ clockwise by the angle $\alpha$.
+What is the equivalent action on vector $b$? We can compensate the clockwise rotation $R$ of $a$
+by a counterclockwise rotation of $b$. Under both rotations the lengths are preserved
+and the angle between $a$ and $b$ is changed in the same way.
+
+So the transpose of clockwise rotation is the counterclockwise rotation by the same angle.
+
+Example 2.
+
+Consider the action $U$ on $\mathbb{R}^3$ that reflects arbitrary vector $a$ across plane $\alpha$.
+The equivalent action on the other vector $b$ would be this reflection $U$ itself!
+Consider two scalar products, $\langle Ua, b \rangle$ and $\langle a, Ub \rangle$.
+We see that vectors $a$ and $Ub$ are reflected vectors $Ua$ and $b$.
+So the scalar products are equal.
+
+The transpose of reflection is the same reflection, so $U^T=U$.
+
+Example 3.
+
+
+Consider the action $H$ on $\mathbb{R}^3$ that projects arbitrary vector $a$ on the plane $\alpha$.
+Let $\hat a$ and $\hat b$ be the projections of vectors $a$ and $b$.
+Scalar product is a linear function, and $\hat a$ is orthogonal to $b - \hat b$, so
+\[
+\langle Ha, b \rangle = \langle \hat a, \hat b + (b-\hat b) \rangle = \langle \hat a, \hat b \rangle
+\]
+By the same reasoning $\langle a, Hb \rangle = \langle \hat a, \hat b \rangle$.
+
+And the transpose of projection is the same projection, $H^T=H$.
+
+The equality $\langle Ha, b\rangle = \langle \hat a, \hat b \rangle$ holds only for orthogonal projection,
+and not for the oblique one.
+So $H^T \neq H$ for oblique projections.
+
+
+The idea of a transpose may be also illustrated if one knows about singular value decomposition.
+From singular value decomposition $A = U\Sigma V^T$ every action $A$ can be decomposed in rotation followed by scaling and
+second rotation.
+The transpose of rotation is inverse rotation. The transpose of scaling is the same scaling.
+So the transpose of every action $A$ is the inverse of second rotation, the same scaling and inverse of first rotation.
+It follows by the way that $\det A = \det A^T$ as rotations do not change volume and scaling is unaffected by transpose.
+
+TODO: add pictures
+
+TODO: Why $H^2=H$ and $H^T=H$ is sufficient for projection?
+
+\url{https://math.stackexchange.com/questions/598258}
